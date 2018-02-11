@@ -1,0 +1,12 @@
+{
+    "terminal.integrated.env.osx": {
+        "PATH": "/opt/local/bin:/opt/local/sbin:$PATH:/Users/iotsuyuan/.platformio/penv/bin:/Users/iotsuyuan/.platformio/penv:/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/iotsuyuan/esp/xtensa-esp32-elf/bin",
+        "PLATFORMIO_CALLER": "vscode"
+    },
+    "files.associations": {
+        "freertos.h": "c",
+        "gpio.h": "c",
+        "task.h": "c"
+    },
+    "C_Cpp.errorSquiggles": "Disabled"
+}
