@@ -12,8 +12,13 @@
         "memory": "c",
         "oled.h": "c",
         "stdlib.h": "c",
+<<<<<<< HEAD
         "esp_log.h": "c",
         "stdio.h": "c"
     },
     "C_Cpp.intelliSenseEngineFallback": "Enabled"
+=======
+        "esp_log.h": "c"
+    }
+>>>>>>> 27b2ba318b3cb4438e2c07efbd84eaa1d1cc92fc
 }

@@ -8,7 +8,11 @@
 //每个字符所占用的字节数为:(size/8+((size%8)?1:0))*(size/2),其中size:是字库生成时的点阵大小(12/16/24...)
  
 //12*12 ASCII字符集点阵
+<<<<<<< HEAD
 const unsigned char F6x8[] =		
+=======
+const unsigned char F6x8[][6] =		
+>>>>>>> 27b2ba318b3cb4438e2c07efbd84eaa1d1cc92fc
 {
 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,// sp
 0x00, 0x00, 0x00, 0x2f, 0x00, 0x00,// !

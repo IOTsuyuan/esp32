@@ -4,9 +4,10 @@
 #include <freertos/task.h>
 #include <stdio.h>
 #include "sdkconfig.h"
+#include "driver/gpio.h"
 
-#define SDA_PIN 19
-#define SCL_PIN 18
+#define SDA_PIN GPIO_NUM_19
+#define SCL_PIN GPIO_NUM_18
 
 static char tag[] = "i2cscanner";
 
