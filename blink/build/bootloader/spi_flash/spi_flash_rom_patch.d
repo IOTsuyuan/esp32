@@ -1,33 +1,33 @@
 spi_flash_rom_patch.o: \
- /Users/iotsuyan/esp/esp-idf/components/spi_flash/./spi_flash_rom_patch.c \
- /Users/iotsuyan/esp/esp-idf/components/esp32/include/rom/ets_sys.h \
- /Users/iotsuyan/esp/esp-idf/components/soc/esp32/include/soc/soc.h \
- /Users/iotsuyan/esp/esp-idf/components/esp32/include/esp_assert.h \
- /Users/iotsuyan/esp/esp-idf/components/esp32/include/rom/gpio.h \
- /Users/iotsuyan/esp/esp-idf/components/esp32/include/esp_attr.h \
- /Users/iotsuyan/esp/esp-idf/components/soc/esp32/include/soc/gpio_reg.h \
- /Users/iotsuyan/esp/esp-idf/components/soc/esp32/include/soc/soc.h \
- /Users/iotsuyan/esp/esp-idf/components/esp32/include/rom/spi_flash.h \
- /Users/iotsuyan/esp/esp-idf/components/soc/esp32/include/soc/spi_reg.h \
- /Users/iotsuyan/esp/esp32/blink/build/bootloader/../include/sdkconfig.h
+ /Users/iotsuyuan/esp/esp-idf/components/spi_flash/./spi_flash_rom_patch.c \
+ /Users/iotsuyuan/esp/esp-idf/components/esp32/include/rom/ets_sys.h \
+ /Users/iotsuyuan/esp/esp-idf/components/soc/esp32/include/soc/soc.h \
+ /Users/iotsuyuan/esp/esp-idf/components/esp32/include/esp_assert.h \
+ /Users/iotsuyuan/esp/esp-idf/components/esp32/include/rom/gpio.h \
+ /Users/iotsuyuan/esp/esp-idf/components/esp32/include/esp_attr.h \
+ /Users/iotsuyuan/esp/esp-idf/components/soc/esp32/include/soc/gpio_reg.h \
+ /Users/iotsuyuan/esp/esp-idf/components/soc/esp32/include/soc/soc.h \
+ /Users/iotsuyuan/esp/esp-idf/components/esp32/include/rom/spi_flash.h \
+ /Users/iotsuyuan/esp/esp-idf/components/soc/esp32/include/soc/spi_reg.h \
+ /Users/iotsuyuan/esp/esp32/blink/build/bootloader/../include/sdkconfig.h
 
-/Users/iotsuyan/esp/esp-idf/components/esp32/include/rom/ets_sys.h:
+/Users/iotsuyuan/esp/esp-idf/components/esp32/include/rom/ets_sys.h:
 
-/Users/iotsuyan/esp/esp-idf/components/soc/esp32/include/soc/soc.h:
+/Users/iotsuyuan/esp/esp-idf/components/soc/esp32/include/soc/soc.h:
 
-/Users/iotsuyan/esp/esp-idf/components/esp32/include/esp_assert.h:
+/Users/iotsuyuan/esp/esp-idf/components/esp32/include/esp_assert.h:
 
-/Users/iotsuyan/esp/esp-idf/components/esp32/include/rom/gpio.h:
+/Users/iotsuyuan/esp/esp-idf/components/esp32/include/rom/gpio.h:
 
-/Users/iotsuyan/esp/esp-idf/components/esp32/include/esp_attr.h:
+/Users/iotsuyuan/esp/esp-idf/components/esp32/include/esp_attr.h:
 
-/Users/iotsuyan/esp/esp-idf/components/soc/esp32/include/soc/gpio_reg.h:
+/Users/iotsuyuan/esp/esp-idf/components/soc/esp32/include/soc/gpio_reg.h:
 
-/Users/iotsuyan/esp/esp-idf/components/soc/esp32/include/soc/soc.h:
+/Users/iotsuyuan/esp/esp-idf/components/soc/esp32/include/soc/soc.h:
 
-/Users/iotsuyan/esp/esp-idf/components/esp32/include/rom/spi_flash.h:
+/Users/iotsuyuan/esp/esp-idf/components/esp32/include/rom/spi_flash.h:
 
-/Users/iotsuyan/esp/esp-idf/components/soc/esp32/include/soc/spi_reg.h:
+/Users/iotsuyuan/esp/esp-idf/components/soc/esp32/include/soc/spi_reg.h:
 
-/Users/iotsuyan/esp/esp32/blink/build/bootloader/../include/sdkconfig.h:
-/Users/iotsuyan/esp/esp-idf/components/spi_flash/./spi_flash_rom_patch.c:
+/Users/iotsuyuan/esp/esp32/blink/build/bootloader/../include/sdkconfig.h:
+/Users/iotsuyuan/esp/esp-idf/components/spi_flash/./spi_flash_rom_patch.c:

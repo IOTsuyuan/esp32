@@ -18,6 +18,7 @@
                 "/Users/iotsuyuan/esp/esp-idf/components/spi_flash/include",
                 "/Users/iotsuyuan/esp/esp-idf/components/driver/include",
                 "/Users/iotsuyuan/esp/esp-idf/components/log/include",
+                "/Users/iotsuyuan/esp/esp-idf/components/hal/include",
                 "/Users/iotsuyuan/esp/esp32/blink/build/include",
                 "/Users/iotsuyuan/esp/esp-idf/components/lwip/include/lwip/",
                 "/Users/iotsuyuan/esp/esp-idf/components/bt/include",
