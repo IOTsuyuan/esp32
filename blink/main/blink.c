@@ -78,7 +78,7 @@ void OLED_Clean(){
 		}
 		i2c_master_stop(cmd1);
 		i2c_master_cmd_begin(OLED_I2C_IO, cmd1, 10/portTICK_PERIOD_MS);
-		i2c_cmd_link_delete(cmd);
+		i2c_cmd_link_delete(cmd1);
 		
 
 	}

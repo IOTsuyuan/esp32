@@ -12,9 +12,20 @@
         "memory": "c",
         "oled.h": "c",
         "stdlib.h": "c",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> b71c1bf855ea0be74545837de2b72cbb4c54578c
         "esp_log.h": "c",
         "stdio.h": "c",
         "oledfont.h": "c"
     },
     "C_Cpp.intelliSenseEngineFallback": "Enabled"
+<<<<<<< HEAD
+=======
+=======
+        "esp_log.h": "c"
+    }
+>>>>>>> 27b2ba318b3cb4438e2c07efbd84eaa1d1cc92fc
+>>>>>>> b71c1bf855ea0be74545837de2b72cbb4c54578c
 }
