@@ -13,7 +13,8 @@
         "oled.h": "c",
         "stdlib.h": "c",
         "esp_log.h": "c",
-        "oledfont.h": "c"
+        "oledfont.h": "c",
+        "oled": "c"
     },
     "C_Cpp.intelliSenseEngineFallback": "Enabled",
 }
