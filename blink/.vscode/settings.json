@@ -20,7 +20,8 @@
         "queue.h": "c",
         "iterator": "c",
         "vector": "c",
-        "ets_sys.h": "c"
+        "ets_sys.h": "c",
+        "queue": "c"
     },
     "C_Cpp.intelliSenseEngineFallback": "Enabled",
 }

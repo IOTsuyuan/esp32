@@ -140,7 +140,7 @@ void x() {
   double temp = ((B5 + 8)>>4)/10.0;
 
 //  ESP_LOGD(tag, "Temp = %.1foC = %.1foF", temp, centigrade_to_fahrenheit(temp));
-  printf("Temp = %.1foC = %.1foF\n", temp, centigrade_to_fahrenheit(temp));
+//  printf("Temp = %.1foC = %.1foF\n", temp, centigrade_to_fahrenheit(temp));
   OLED_ShowString(0,0,OLED_Tem,16);
   OLED_ShowNum(48,0,temp/1,2,16);
   OLED_ShowNum(72,0,temp*10/1,1,16);
@@ -168,7 +168,7 @@ void x() {
   int32_t high=(44330.0 * (1.0-pow((float)pressure / 101325.0, 1.0/5.255)) );  
 //  int32_t high2=(44330.0 * (1.0-pow(((float)pressure) * 2 / 101325.0, 1.0/5.255)) );  
 //  ESP_LOGD(tag, "pressure = %d pa, = %f inHg, UP=%d", pressure, pascals_to_inHg(pressure), UP);
-  printf("pressure = %d pa, = %d m =%d\n", pressure, high, UP);
+//  printf("pressure = %d pa, = %d m =%d\n", pressure, high, UP);
   OLED_ShowString(0,2,OLED_Pas,16);
   OLED_ShowNum(48,2,pressure,6,16);
 }
