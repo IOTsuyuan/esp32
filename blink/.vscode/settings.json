@@ -14,7 +14,13 @@
         "stdlib.h": "c",
         "esp_log.h": "c",
         "oledfont.h": "c",
-        "oled": "c"
+        "oled": "c",
+        "uart.h": "c",
+        "hal_i2c.h": "c",
+        "queue.h": "c",
+        "iterator": "c",
+        "vector": "c",
+        "ets_sys.h": "c"
     },
     "C_Cpp.intelliSenseEngineFallback": "Enabled",
 }

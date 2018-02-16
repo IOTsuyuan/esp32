@@ -1,29 +1,32 @@
-blink.o: /Users/iotsuyuan/esp/esp32/blink/main/./blink.c \
- /Users/iotsuyuan/esp/esp-idf/components/driver/include/driver/i2c.h \
- /Users/iotsuyuan/esp/esp-idf/components/esp32/include/esp_types.h \
- /Users/iotsuyuan/esp/esp-idf/components/newlib/include/sys/cdefs.h \
- /Users/iotsuyuan/esp/esp-idf/components/newlib/include/machine/_default_types.h \
- /Users/iotsuyuan/esp/esp-idf/components/newlib/include/sys/features.h \
- /Users/iotsuyuan/esp/esp-idf/components/newlib/include/stdint.h \
- /Users/iotsuyuan/esp/esp-idf/components/newlib/include/sys/_intsup.h \
- /Users/iotsuyuan/esp/esp-idf/components/esp32/include/esp_err.h \
- /Users/iotsuyuan/esp/esp-idf/components/newlib/include/stdio.h \
+bmp180.o: /Users/iotsuyuan/esp/esp32/blink/main/./bmp180.c \
+ /Users/iotsuyuan/esp/esp32/blink/main/./bmp180.h \
+ /Users/iotsuyuan/esp/esp-idf/components/newlib/include/math.h \
+ /Users/iotsuyuan/esp/esp-idf/components/newlib/include/sys/reent.h \
  /Users/iotsuyuan/esp/esp-idf/components/newlib/include/_ansi.h \
  /Users/iotsuyuan/esp/esp-idf/components/newlib/include/newlib.h \
  /Users/iotsuyuan/esp/esp-idf/components/newlib/include/sys/config.h \
  /Users/iotsuyuan/esp/esp-idf/components/newlib/include/machine/ieeefp.h \
+ /Users/iotsuyuan/esp/esp-idf/components/newlib/include/sys/features.h \
  /Users/iotsuyuan/esp/esp-idf/components/esp32/include/xtensa/config/core-isa.h \
- /Users/iotsuyuan/esp/esp-idf/components/newlib/include/sys/reent.h \
- /Users/iotsuyuan/esp/esp-idf/components/newlib/include/_ansi.h \
  /Users/iotsuyuan/esp/esp-idf/components/newlib/include/sys/_types.h \
  /Users/iotsuyuan/esp/esp-idf/components/newlib/include/machine/_types.h \
+ /Users/iotsuyuan/esp/esp-idf/components/newlib/include/machine/_default_types.h \
  /Users/iotsuyuan/esp/esp-idf/components/newlib/include/sys/lock.h \
+ /Users/iotsuyuan/esp/esp-idf/components/newlib/include/_ansi.h \
+ /Users/iotsuyuan/esp/esp32/blink/build/include/sdkconfig.h \
+ /Users/iotsuyuan/esp/esp-idf/components/hal/include/hal_i2c.h \
+ /Users/iotsuyuan/esp/esp-idf/components/driver/include/driver/i2c.h \
+ /Users/iotsuyuan/esp/esp-idf/components/esp32/include/esp_types.h \
+ /Users/iotsuyuan/esp/esp-idf/components/newlib/include/sys/cdefs.h \
+ /Users/iotsuyuan/esp/esp-idf/components/newlib/include/stdint.h \
+ /Users/iotsuyuan/esp/esp-idf/components/newlib/include/sys/_intsup.h \
+ /Users/iotsuyuan/esp/esp-idf/components/esp32/include/esp_err.h \
+ /Users/iotsuyuan/esp/esp-idf/components/newlib/include/stdio.h \
  /Users/iotsuyuan/esp/esp-idf/components/newlib/include/sys/types.h \
  /Users/iotsuyuan/esp/esp-idf/components/newlib/include/machine/types.h \
  /Users/iotsuyuan/esp/esp-idf/components/newlib/include/sys/sched.h \
  /Users/iotsuyuan/esp/esp-idf/components/newlib/include/sys/stdio.h \
  /Users/iotsuyuan/esp/esp-idf/components/newlib/platform_include/assert.h \
- /Users/iotsuyuan/esp/esp32/blink/build/include/sdkconfig.h \
  /Users/iotsuyuan/esp/esp-idf/components/newlib/include/stdlib.h \
  /Users/iotsuyuan/esp/esp-idf/components/newlib/include/machine/stdlib.h \
  /Users/iotsuyuan/esp/esp-idf/components/newlib/include/alloca.h \
@@ -82,30 +85,13 @@ blink.o: /Users/iotsuyuan/esp/esp32/blink/main/./blink.c \
  /Users/iotsuyuan/esp/esp-idf/components/freertos/include/freertos/list.h \
  /Users/iotsuyuan/esp/esp-idf/components/freertos/include/freertos/queue.h \
  /Users/iotsuyuan/esp/esp-idf/components/freertos/include/freertos/ringbuf.h \
- /Users/iotsuyuan/esp/esp-idf/components/log/include/esp_log.h \
- /Users/iotsuyuan/esp/esp-idf/components/log/include/esp_log_internal.h \
- /Users/iotsuyuan/esp/esp-idf/components/hal/include/hal_i2c.h \
- /Users/iotsuyuan/esp/esp32/blink/main/./bmp180.h \
- /Users/iotsuyuan/esp/esp-idf/components/newlib/include/math.h \
  /Users/iotsuyuan/esp/esp-idf/components/hal/include/oled.h
 
-/Users/iotsuyuan/esp/esp-idf/components/driver/include/driver/i2c.h:
+/Users/iotsuyuan/esp/esp32/blink/main/./bmp180.h:
 
-/Users/iotsuyuan/esp/esp-idf/components/esp32/include/esp_types.h:
+/Users/iotsuyuan/esp/esp-idf/components/newlib/include/math.h:
 
-/Users/iotsuyuan/esp/esp-idf/components/newlib/include/sys/cdefs.h:
-
-/Users/iotsuyuan/esp/esp-idf/components/newlib/include/machine/_default_types.h:
-
-/Users/iotsuyuan/esp/esp-idf/components/newlib/include/sys/features.h:
-
-/Users/iotsuyuan/esp/esp-idf/components/newlib/include/stdint.h:
-
-/Users/iotsuyuan/esp/esp-idf/components/newlib/include/sys/_intsup.h:
-
-/Users/iotsuyuan/esp/esp-idf/components/esp32/include/esp_err.h:
-
-/Users/iotsuyuan/esp/esp-idf/components/newlib/include/stdio.h:
+/Users/iotsuyuan/esp/esp-idf/components/newlib/include/sys/reent.h:
 
 /Users/iotsuyuan/esp/esp-idf/components/newlib/include/_ansi.h:
 
@@ -115,17 +101,37 @@ blink.o: /Users/iotsuyuan/esp/esp32/blink/main/./blink.c \
 
 /Users/iotsuyuan/esp/esp-idf/components/newlib/include/machine/ieeefp.h:
 
+/Users/iotsuyuan/esp/esp-idf/components/newlib/include/sys/features.h:
+
 /Users/iotsuyuan/esp/esp-idf/components/esp32/include/xtensa/config/core-isa.h:
-
-/Users/iotsuyuan/esp/esp-idf/components/newlib/include/sys/reent.h:
-
-/Users/iotsuyuan/esp/esp-idf/components/newlib/include/_ansi.h:
 
 /Users/iotsuyuan/esp/esp-idf/components/newlib/include/sys/_types.h:
 
 /Users/iotsuyuan/esp/esp-idf/components/newlib/include/machine/_types.h:
 
+/Users/iotsuyuan/esp/esp-idf/components/newlib/include/machine/_default_types.h:
+
 /Users/iotsuyuan/esp/esp-idf/components/newlib/include/sys/lock.h:
+
+/Users/iotsuyuan/esp/esp-idf/components/newlib/include/_ansi.h:
+
+/Users/iotsuyuan/esp/esp32/blink/build/include/sdkconfig.h:
+
+/Users/iotsuyuan/esp/esp-idf/components/hal/include/hal_i2c.h:
+
+/Users/iotsuyuan/esp/esp-idf/components/driver/include/driver/i2c.h:
+
+/Users/iotsuyuan/esp/esp-idf/components/esp32/include/esp_types.h:
+
+/Users/iotsuyuan/esp/esp-idf/components/newlib/include/sys/cdefs.h:
+
+/Users/iotsuyuan/esp/esp-idf/components/newlib/include/stdint.h:
+
+/Users/iotsuyuan/esp/esp-idf/components/newlib/include/sys/_intsup.h:
+
+/Users/iotsuyuan/esp/esp-idf/components/esp32/include/esp_err.h:
+
+/Users/iotsuyuan/esp/esp-idf/components/newlib/include/stdio.h:
 
 /Users/iotsuyuan/esp/esp-idf/components/newlib/include/sys/types.h:
 
@@ -136,8 +142,6 @@ blink.o: /Users/iotsuyuan/esp/esp32/blink/main/./blink.c \
 /Users/iotsuyuan/esp/esp-idf/components/newlib/include/sys/stdio.h:
 
 /Users/iotsuyuan/esp/esp-idf/components/newlib/platform_include/assert.h:
-
-/Users/iotsuyuan/esp/esp32/blink/build/include/sdkconfig.h:
 
 /Users/iotsuyuan/esp/esp-idf/components/newlib/include/stdlib.h:
 
@@ -255,15 +259,5 @@ blink.o: /Users/iotsuyuan/esp/esp32/blink/main/./blink.c \
 
 /Users/iotsuyuan/esp/esp-idf/components/freertos/include/freertos/ringbuf.h:
 
-/Users/iotsuyuan/esp/esp-idf/components/log/include/esp_log.h:
-
-/Users/iotsuyuan/esp/esp-idf/components/log/include/esp_log_internal.h:
-
-/Users/iotsuyuan/esp/esp-idf/components/hal/include/hal_i2c.h:
-
-/Users/iotsuyuan/esp/esp32/blink/main/./bmp180.h:
-
-/Users/iotsuyuan/esp/esp-idf/components/newlib/include/math.h:
-
 /Users/iotsuyuan/esp/esp-idf/components/hal/include/oled.h:
-/Users/iotsuyuan/esp/esp32/blink/main/./blink.c:
+/Users/iotsuyuan/esp/esp32/blink/main/./bmp180.c:

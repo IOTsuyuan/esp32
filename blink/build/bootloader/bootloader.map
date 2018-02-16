@@ -47,7 +47,7 @@ Discarded input sections
  .data          0x0000000000000000        0x0 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_clock.o)
  .bss           0x0000000000000000        0x0 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_clock.o)
  .xt.lit        0x0000000000000000        0x8 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_clock.o)
- .xt.prop       0x0000000000000000       0x48 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_clock.o)
+ .xt.prop       0x0000000000000000       0x60 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_clock.o)
  .literal.bootloader_flash_write
                 0x0000000000000000       0x40 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
  .literal.bootloader_flash_erase_sector
@@ -395,7 +395,7 @@ END GROUP
                 0x000000003fff1640                . = ALIGN (0x4)
                 0x000000003fff1640                _heap_start = ABSOLUTE (.)
 
-.iram.text      0x0000000040078000     0x364f
+.iram.text      0x0000000040078000     0x3657
                 0x0000000040078000                _stext = .
                 0x0000000040078000                _text_start = ABSOLUTE (.)
  *(.literal .text .literal.* .text.* .stub .gnu.warning .gnu.linkonce.literal.* .gnu.linkonce.t.*.literal .gnu.linkonce.t.*)
@@ -685,298 +685,298 @@ END GROUP
                 0x0000000040078fd8                call_start_cpu0
  *fill*         0x00000000400790ff        0x1 
  .text.bootloader_clock_configure
-                0x0000000040079100       0x6e /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_clock.o)
-                                         0x76 (size before relaxing)
+                0x0000000040079100       0x76 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_clock.o)
+                                         0x82 (size before relaxing)
                 0x0000000040079100                bootloader_clock_configure
- *fill*         0x000000004007916e        0x2 
+ *fill*         0x0000000040079176        0x2 
  .text.spi_to_esp_err
-                0x0000000040079170       0x22 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
- *fill*         0x0000000040079192        0x2 
+                0x0000000040079178       0x22 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+ *fill*         0x000000004007919a        0x2 
  .text.bootloader_flash_read_allow_decrypt
-                0x0000000040079194       0x97 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+                0x000000004007919c       0x97 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
                                          0x9b (size before relaxing)
- *fill*         0x000000004007922b        0x1 
+ *fill*         0x0000000040079233        0x1 
  .text.bootloader_flash_read_no_decrypt
-                0x000000004007922c       0x32 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+                0x0000000040079234       0x32 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
                                          0x36 (size before relaxing)
- *fill*         0x000000004007925e        0x2 
+ *fill*         0x0000000040079266        0x2 
  .text.bootloader_mmap
-                0x0000000040079260       0xb1 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+                0x0000000040079268       0xb1 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
                                          0xb9 (size before relaxing)
-                0x0000000040079260                bootloader_mmap
- *fill*         0x0000000040079311        0x3 
+                0x0000000040079268                bootloader_mmap
+ *fill*         0x0000000040079319        0x3 
  .text.bootloader_munmap
-                0x0000000040079314       0x36 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
-                0x0000000040079314                bootloader_munmap
- *fill*         0x000000004007934a        0x2 
+                0x000000004007931c       0x36 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+                0x000000004007931c                bootloader_munmap
+ *fill*         0x0000000040079352        0x2 
  .text.bootloader_flash_read
-                0x000000004007934c       0x86 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
-                0x000000004007934c                bootloader_flash_read
- *fill*         0x00000000400793d2        0x2 
+                0x0000000040079354       0x86 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+                0x0000000040079354                bootloader_flash_read
+ *fill*         0x00000000400793da        0x2 
  .text.bootloader_fill_random
-                0x00000000400793d4       0x59 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
-                0x00000000400793d4                bootloader_fill_random
- *fill*         0x000000004007942d        0x3 
+                0x00000000400793dc       0x59 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
+                0x00000000400793dc                bootloader_fill_random
+ *fill*         0x0000000040079435        0x3 
  .text.bootloader_random_enable
-                0x0000000040079430      0x1d5 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
-                0x0000000040079430                bootloader_random_enable
- *fill*         0x0000000040079605        0x3 
+                0x0000000040079438      0x1d5 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
+                0x0000000040079438                bootloader_random_enable
+ *fill*         0x000000004007960d        0x3 
  .text.bootloader_random_disable
-                0x0000000040079608      0x11c /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
-                0x0000000040079608                bootloader_random_disable
+                0x0000000040079610      0x11c /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
+                0x0000000040079610                bootloader_random_disable
  .text.should_map
-                0x0000000040079724       0x30 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+                0x000000004007972c       0x30 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
  .text.verify_image_header
-                0x0000000040079754       0x7e /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
- *fill*         0x00000000400797d2        0x2 
+                0x000000004007975c       0x7e /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+ *fill*         0x00000000400797da        0x2 
  .text.verify_segment_header
-                0x00000000400797d4       0x71 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+                0x00000000400797dc       0x71 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
                                          0x79 (size before relaxing)
- *fill*         0x0000000040079845        0x3 
+ *fill*         0x000000004007984d        0x3 
  .text.verify_checksum
-                0x0000000040079848       0x87 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+                0x0000000040079850       0x87 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
                                          0x8f (size before relaxing)
- *fill*         0x00000000400798cf        0x1 
+ *fill*         0x00000000400798d7        0x1 
  .text.verify_simple_hash
-                0x00000000400798d0       0x5b /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+                0x00000000400798d8       0x5b /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
                                          0x6a (size before relaxing)
- *fill*         0x000000004007992b        0x1 
+ *fill*         0x0000000040079933        0x1 
  .text.should_load
-                0x000000004007992c       0x44 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+                0x0000000040079934       0x44 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
                                          0x48 (size before relaxing)
  .text.process_segment
-                0x0000000040079970      0x1bd /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+                0x0000000040079978      0x1bd /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
                                         0x1d1 (size before relaxing)
- *fill*         0x0000000040079b2d        0x3 
+ *fill*         0x0000000040079b35        0x3 
  .text.esp_image_load
-                0x0000000040079b30      0x24a /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+                0x0000000040079b38      0x24a /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
                                         0x262 (size before relaxing)
-                0x0000000040079b30                esp_image_load
- *fill*         0x0000000040079d7a        0x2 
+                0x0000000040079b38                esp_image_load
+ *fill*         0x0000000040079d82        0x2 
  .text.esp_partition_table_basic_verify
-                0x0000000040079d7c      0x143 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
+                0x0000000040079d84      0x143 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
                                         0x14f (size before relaxing)
-                0x0000000040079d7c                esp_partition_table_basic_verify
- *fill*         0x0000000040079ebf        0x1 
+                0x0000000040079d84                esp_partition_table_basic_verify
+ *fill*         0x0000000040079ec7        0x1 
  .text.bootloader_sha256_start
-                0x0000000040079ec0       0x12 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
-                0x0000000040079ec0                bootloader_sha256_start
- *fill*         0x0000000040079ed2        0x2 
+                0x0000000040079ec8       0x12 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
+                0x0000000040079ec8                bootloader_sha256_start
+ *fill*         0x0000000040079eda        0x2 
  .text.bootloader_sha256_data
-                0x0000000040079ed4       0xa1 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
+                0x0000000040079edc       0xa1 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
                                          0xa9 (size before relaxing)
-                0x0000000040079ed4                bootloader_sha256_data
- *fill*         0x0000000040079f75        0x3 
+                0x0000000040079edc                bootloader_sha256_data
+ *fill*         0x0000000040079f7d        0x3 
  .text.bootloader_sha256_finish
-                0x0000000040079f78       0xdc /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
+                0x0000000040079f80       0xdc /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
                                          0xf0 (size before relaxing)
-                0x0000000040079f78                bootloader_sha256_finish
+                0x0000000040079f80                bootloader_sha256_finish
  .text.esp_log_early_timestamp
-                0x000000004007a054       0x1f /Users/iotsuyuan/esp/esp32/blink/build/bootloader/log/liblog.a(log.o)
-                0x000000004007a054                esp_log_timestamp
-                0x000000004007a054                esp_log_early_timestamp
- *fill*         0x000000004007a073        0x1 
+                0x000000004007a05c       0x1f /Users/iotsuyuan/esp/esp32/blink/build/bootloader/log/liblog.a(log.o)
+                0x000000004007a05c                esp_log_timestamp
+                0x000000004007a05c                esp_log_early_timestamp
+ *fill*         0x000000004007a07b        0x1 
  .text.esp_rom_spiflash_read_status
-                0x000000004007a074       0x61 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
-                0x000000004007a074                esp_rom_spiflash_read_status
- *fill*         0x000000004007a0d5        0x3 
+                0x000000004007a07c       0x61 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+                0x000000004007a07c                esp_rom_spiflash_read_status
+ *fill*         0x000000004007a0dd        0x3 
  .text.esp_rom_spiflash_wait_idle
-                0x000000004007a0d8       0x32 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
-                0x000000004007a0d8                esp_rom_spiflash_wait_idle
- *fill*         0x000000004007a10a        0x2 
+                0x000000004007a0e0       0x32 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+                0x000000004007a0e0                esp_rom_spiflash_wait_idle
+ *fill*         0x000000004007a112        0x2 
  .text.esp_rom_spiflash_read_data
-                0x000000004007a10c       0xe2 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
- *fill*         0x000000004007a1ee        0x2 
+                0x000000004007a114       0xe2 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+ *fill*         0x000000004007a1f6        0x2 
  .text.esp_rom_spiflash_read_statushigh
-                0x000000004007a1f0       0x21 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
-                0x000000004007a1f0                esp_rom_spiflash_read_statushigh
- *fill*         0x000000004007a211        0x3 
+                0x000000004007a1f8       0x21 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+                0x000000004007a1f8                esp_rom_spiflash_read_statushigh
+ *fill*         0x000000004007a219        0x3 
  .text.esp_rom_spiflash_write_status
-                0x000000004007a214       0x34 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+                0x000000004007a21c       0x34 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
                                          0x38 (size before relaxing)
-                0x000000004007a214                esp_rom_spiflash_write_status
+                0x000000004007a21c                esp_rom_spiflash_write_status
  .text.esp_rom_spiflash_unlock
-                0x000000004007a248       0x6a /Users/iotsuyuan/esp/esp32/blink/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+                0x000000004007a250       0x6a /Users/iotsuyuan/esp/esp32/blink/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
                                          0x7e (size before relaxing)
-                0x000000004007a248                esp_rom_spiflash_unlock
- *fill*         0x000000004007a2b2        0x2 
+                0x000000004007a250                esp_rom_spiflash_unlock
+ *fill*         0x000000004007a2ba        0x2 
  .text.esp_rom_spiflash_read
-                0x000000004007a2b4      0x284 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
-                0x000000004007a2b4                esp_rom_spiflash_read
+                0x000000004007a2bc      0x284 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+                0x000000004007a2bc                esp_rom_spiflash_read
  .text.rtc_clk_32k_enable_internal
-                0x000000004007a538       0x81 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_clk.o)
- *fill*         0x000000004007a5b9        0x3 
+                0x000000004007a540       0x81 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_clk.o)
+ *fill*         0x000000004007a5c1        0x3 
  .text.rtc_clk_32k_enable
-                0x000000004007a5bc       0x2d /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_clk.o)
-                0x000000004007a5bc                rtc_clk_32k_enable
- *fill*         0x000000004007a5e9        0x3 
+                0x000000004007a5c4       0x2d /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x000000004007a5c4                rtc_clk_32k_enable
+ *fill*         0x000000004007a5f1        0x3 
  .text.rtc_clk_8m_enable
-                0x000000004007a5ec       0x99 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_clk.o)
-                0x000000004007a5ec                rtc_clk_8m_enable
- *fill*         0x000000004007a685        0x3 
+                0x000000004007a5f4       0x99 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x000000004007a5f4                rtc_clk_8m_enable
+ *fill*         0x000000004007a68d        0x3 
  .text.rtc_clk_8m_enabled
-                0x000000004007a688       0x19 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_clk.o)
-                0x000000004007a688                rtc_clk_8m_enabled
- *fill*         0x000000004007a6a1        0x3 
+                0x000000004007a690       0x19 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x000000004007a690                rtc_clk_8m_enabled
+ *fill*         0x000000004007a6a9        0x3 
  .text.rtc_clk_8md256_enabled
-                0x000000004007a6a4       0x1a /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_clk.o)
-                0x000000004007a6a4                rtc_clk_8md256_enabled
- *fill*         0x000000004007a6be        0x2 
+                0x000000004007a6ac       0x1a /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x000000004007a6ac                rtc_clk_8md256_enabled
+ *fill*         0x000000004007a6c6        0x2 
  .text.rtc_clk_xtal_freq_estimate
-                0x000000004007a6c0       0xa6 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x000000004007a6c8       0xa6 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                          0xb2 (size before relaxing)
- *fill*         0x000000004007a766        0x2 
+ *fill*         0x000000004007a76e        0x2 
  .text.rtc_clk_slow_freq_set
-                0x000000004007a768       0x27 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_clk.o)
-                0x000000004007a768                rtc_clk_slow_freq_set
- *fill*         0x000000004007a78f        0x1 
+                0x000000004007a770       0x27 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x000000004007a770                rtc_clk_slow_freq_set
+ *fill*         0x000000004007a797        0x1 
  .text.rtc_clk_slow_freq_get
-                0x000000004007a790       0x10 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_clk.o)
-                0x000000004007a790                rtc_clk_slow_freq_get
+                0x000000004007a798       0x10 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x000000004007a798                rtc_clk_slow_freq_get
  .text.rtc_clk_fast_freq_set
-                0x000000004007a7a0       0x2a /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_clk.o)
-                0x000000004007a7a0                rtc_clk_fast_freq_set
- *fill*         0x000000004007a7ca        0x2 
+                0x000000004007a7a8       0x2a /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x000000004007a7a8                rtc_clk_fast_freq_set
+ *fill*         0x000000004007a7d2        0x2 
  .text.rtc_clk_fast_freq_get
-                0x000000004007a7cc       0x10 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_clk.o)
-                0x000000004007a7cc                rtc_clk_fast_freq_get
+                0x000000004007a7d4       0x10 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x000000004007a7d4                rtc_clk_fast_freq_get
  .text.rtc_clk_bbpll_set
-                0x000000004007a7dc      0x170 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x000000004007a7e4      0x170 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                         0x178 (size before relaxing)
-                0x000000004007a7dc                rtc_clk_bbpll_set
+                0x000000004007a7e4                rtc_clk_bbpll_set
  .text.rtc_clk_xtal_freq_get
-                0x000000004007a94c       0x38 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x000000004007a954       0x38 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                          0x3c (size before relaxing)
-                0x000000004007a94c                rtc_get_xtal
-                0x000000004007a94c                rtc_clk_xtal_freq_get
+                0x000000004007a954                rtc_get_xtal
+                0x000000004007a954                rtc_clk_xtal_freq_get
  .text.rtc_clk_cpu_freq_get
-                0x000000004007a984       0x88 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x000000004007a98c       0x88 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                          0x94 (size before relaxing)
-                0x000000004007a984                rtc_clk_cpu_freq_get
+                0x000000004007a98c                rtc_clk_cpu_freq_get
  .text.rtc_clk_cpu_freq_value
-                0x000000004007aa0c       0x45 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_clk.o)
-                0x000000004007aa0c                rtc_clk_cpu_freq_value
- *fill*         0x000000004007aa51        0x3 
+                0x000000004007aa14       0x45 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x000000004007aa14                rtc_clk_cpu_freq_value
+ *fill*         0x000000004007aa59        0x3 
  .text.rtc_clk_xtal_freq_update
-                0x000000004007aa54       0x12 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x000000004007aa5c       0x12 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                          0x16 (size before relaxing)
-                0x000000004007aa54                rtc_clk_xtal_freq_update
- *fill*         0x000000004007aa66        0x2 
+                0x000000004007aa5c                rtc_clk_xtal_freq_update
+ *fill*         0x000000004007aa6e        0x2 
  .text.rtc_clk_apb_freq_update
-                0x000000004007aa68       0x13 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x000000004007aa70       0x13 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                          0x16 (size before relaxing)
-                0x000000004007aa68                rtc_clk_apb_freq_update
- *fill*         0x000000004007aa7b        0x1 
+                0x000000004007aa70                rtc_clk_apb_freq_update
+ *fill*         0x000000004007aa83        0x1 
  .text.rtc_clk_cpu_freq_set
-                0x000000004007aa7c      0x1c4 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x000000004007aa84      0x1c4 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                         0x1d8 (size before relaxing)
-                0x000000004007aa7c                rtc_clk_cpu_freq_set
+                0x000000004007aa84                rtc_clk_cpu_freq_set
  .text.rtc_clk_apb_freq_get
-                0x000000004007ac40       0x2a /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_clk.o)
-                0x000000004007ac40                rtc_clk_apb_freq_get
- *fill*         0x000000004007ac6a        0x2 
+                0x000000004007ac48       0x2a /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x000000004007ac48                rtc_clk_apb_freq_get
+ *fill*         0x000000004007ac72        0x2 
  .text.rtc_clk_init
-                0x000000004007ac6c      0x182 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x000000004007ac74      0x182 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                         0x1ba (size before relaxing)
-                0x000000004007ac6c                rtc_clk_init
- *fill*         0x000000004007adee        0x2 
+                0x000000004007ac74                rtc_clk_init
+ *fill*         0x000000004007adf6        0x2 
  .text.rtc_vddsdio_get_config
-                0x000000004007adf0      0x10a /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_init.o)
-                0x000000004007adf0                rtc_vddsdio_get_config
- *fill*         0x000000004007aefa        0x2 
+                0x000000004007adf8      0x10a /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_init.o)
+                0x000000004007adf8                rtc_vddsdio_get_config
+ *fill*         0x000000004007af02        0x2 
  .text.rtc_vddsdio_set_config
-                0x000000004007aefc       0x46 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_init.o)
-                0x000000004007aefc                rtc_vddsdio_set_config
- *fill*         0x000000004007af42        0x2 
+                0x000000004007af04       0x46 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_init.o)
+                0x000000004007af04                rtc_vddsdio_set_config
+ *fill*         0x000000004007af4a        0x2 
  .text.rtc_clk_cal_internal
-                0x000000004007af44      0x161 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_time.o)
- *fill*         0x000000004007b0a5        0x3 
+                0x000000004007af4c      0x161 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_time.o)
+ *fill*         0x000000004007b0ad        0x3 
  .text.rtc_clk_cal_ratio
-                0x000000004007b0a8       0x20 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_time.o)
+                0x000000004007b0b0       0x20 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_time.o)
                                          0x24 (size before relaxing)
-                0x000000004007b0a8                rtc_clk_cal_ratio
+                0x000000004007b0b0                rtc_clk_cal_ratio
  .text.rtc_clk_wait_for_slow_cycle
-                0x000000004007b0c8       0x79 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_time.o)
-                0x000000004007b0c8                rtc_clk_wait_for_slow_cycle
- *fill*         0x000000004007b141        0x3 
- .text          0x000000004007b144       0x26 /Users/iotsuyuan/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_bswapsi2.o)
-                0x000000004007b144                __bswapsi2
- *fill*         0x000000004007b16a        0x2 
+                0x000000004007b0d0       0x79 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_time.o)
+                0x000000004007b0d0                rtc_clk_wait_for_slow_cycle
+ *fill*         0x000000004007b149        0x3 
+ .text          0x000000004007b14c       0x26 /Users/iotsuyuan/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_bswapsi2.o)
+                0x000000004007b14c                __bswapsi2
+ *fill*         0x000000004007b172        0x2 
  .text.index_to_partition
-                0x000000004007b16c       0x48 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/main/libmain.a(bootloader_start.o)
- *fill*         0x000000004007b1b4        0x0 
- *fill*         0x000000004007b1b4        0x0 
- *fill*         0x000000004007b1b4        0x0 
- *fill*         0x000000004007b1b4        0x0 
- *fill*         0x000000004007b1b4        0x0 
- *fill*         0x000000004007b1b4        0x0 
- *fill*         0x000000004007b1b4        0x0 
- *fill*         0x000000004007b1b4        0x0 
- *fill*         0x000000004007b1b4        0x0 
- *fill*         0x000000004007b1b4        0x0 
- *fill*         0x000000004007b1b4        0x0 
- *fill*         0x000000004007b1b4        0x0 
- *fill*         0x000000004007b1b4        0x0 
- *fill*         0x000000004007b1b4        0x0 
- *fill*         0x000000004007b1b4        0x0 
- *fill*         0x000000004007b1b4        0x0 
- *fill*         0x000000004007b1b4        0x0 
- *fill*         0x000000004007b1b4        0x0 
- *fill*         0x000000004007b1b4        0x0 
- *fill*         0x000000004007b1b4        0x0 
- *fill*         0x000000004007b1b4        0x0 
- *fill*         0x000000004007b1b4        0x0 
- *fill*         0x000000004007b1b4        0x0 
- *fill*         0x000000004007b1b4        0x0 
- *fill*         0x000000004007b1b4        0x0 
- *fill*         0x000000004007b1b4        0x0 
- *fill*         0x000000004007b1b4        0x0 
- *fill*         0x000000004007b1b4        0x0 
- *fill*         0x000000004007b1b4        0x0 
- *fill*         0x000000004007b1b4        0x0 
- *fill*         0x000000004007b1b4        0x0 
- *fill*         0x000000004007b1b4        0x0 
- *fill*         0x000000004007b1b4        0x0 
- *fill*         0x000000004007b1b4        0x0 
- *fill*         0x000000004007b1b4        0x0 
- *fill*         0x000000004007b1b4        0x0 
- *fill*         0x000000004007b1b4        0x0 
- *fill*         0x000000004007b1b4        0x0 
+                0x000000004007b174       0x48 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/main/libmain.a(bootloader_start.o)
+ *fill*         0x000000004007b1bc        0x0 
+ *fill*         0x000000004007b1bc        0x0 
+ *fill*         0x000000004007b1bc        0x0 
+ *fill*         0x000000004007b1bc        0x0 
+ *fill*         0x000000004007b1bc        0x0 
+ *fill*         0x000000004007b1bc        0x0 
+ *fill*         0x000000004007b1bc        0x0 
+ *fill*         0x000000004007b1bc        0x0 
+ *fill*         0x000000004007b1bc        0x0 
+ *fill*         0x000000004007b1bc        0x0 
+ *fill*         0x000000004007b1bc        0x0 
+ *fill*         0x000000004007b1bc        0x0 
+ *fill*         0x000000004007b1bc        0x0 
+ *fill*         0x000000004007b1bc        0x0 
+ *fill*         0x000000004007b1bc        0x0 
+ *fill*         0x000000004007b1bc        0x0 
+ *fill*         0x000000004007b1bc        0x0 
+ *fill*         0x000000004007b1bc        0x0 
+ *fill*         0x000000004007b1bc        0x0 
+ *fill*         0x000000004007b1bc        0x0 
+ *fill*         0x000000004007b1bc        0x0 
+ *fill*         0x000000004007b1bc        0x0 
+ *fill*         0x000000004007b1bc        0x0 
+ *fill*         0x000000004007b1bc        0x0 
+ *fill*         0x000000004007b1bc        0x0 
+ *fill*         0x000000004007b1bc        0x0 
+ *fill*         0x000000004007b1bc        0x0 
+ *fill*         0x000000004007b1bc        0x0 
+ *fill*         0x000000004007b1bc        0x0 
+ *fill*         0x000000004007b1bc        0x0 
+ *fill*         0x000000004007b1bc        0x0 
+ *fill*         0x000000004007b1bc        0x0 
+ *fill*         0x000000004007b1bc        0x0 
+ *fill*         0x000000004007b1bc        0x0 
+ *fill*         0x000000004007b1bc        0x0 
+ *fill*         0x000000004007b1bc        0x0 
+ *fill*         0x000000004007b1bc        0x0 
+ *fill*         0x000000004007b1bc        0x0 
  .text.clk_val_is_valid
-                0x000000004007b1b4       0x20 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x000000004007b1bc       0x20 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_clk.o)
  .text.reg_val_to_clk_val
-                0x000000004007b1d4        0x8 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x000000004007b1dc        0x8 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_clk.o)
  .text.clk_val_to_reg_val
-                0x000000004007b1dc        0xe /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_clk.o)
- *fill*         0x000000004007b1ea        0x0 
- *fill*         0x000000004007b1ea        0x0 
- *fill*         0x000000004007b1ea        0x0 
- *fill*         0x000000004007b1ea        0x0 
- *fill*         0x000000004007b1ea        0x0 
- *fill*         0x000000004007b1ea        0x0 
- *fill*         0x000000004007b1ea        0x0 
- *fill*         0x000000004007b1ea        0x0 
- *fill*         0x000000004007b1ea        0x0 
- *fill*         0x000000004007b1ea        0x0 
- *fill*         0x000000004007b1ea        0x0 
- *fill*         0x000000004007b1ea        0x0 
- *fill*         0x000000004007b1ea        0x0 
- *fill*         0x000000004007b1ea        0x0 
- *fill*         0x000000004007b1ea        0x0 
- *fill*         0x000000004007b1ea        0x0 
- *fill*         0x000000004007b1ea        0x0 
- *fill*         0x000000004007b1ea        0x2 
- .text          0x000000004007b1ec      0x281 /Users/iotsuyuan/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
-                0x000000004007b1ec                __udivdi3
+                0x000000004007b1e4        0xe /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_clk.o)
+ *fill*         0x000000004007b1f2        0x0 
+ *fill*         0x000000004007b1f2        0x0 
+ *fill*         0x000000004007b1f2        0x0 
+ *fill*         0x000000004007b1f2        0x0 
+ *fill*         0x000000004007b1f2        0x0 
+ *fill*         0x000000004007b1f2        0x0 
+ *fill*         0x000000004007b1f2        0x0 
+ *fill*         0x000000004007b1f2        0x0 
+ *fill*         0x000000004007b1f2        0x0 
+ *fill*         0x000000004007b1f2        0x0 
+ *fill*         0x000000004007b1f2        0x0 
+ *fill*         0x000000004007b1f2        0x0 
+ *fill*         0x000000004007b1f2        0x0 
+ *fill*         0x000000004007b1f2        0x0 
+ *fill*         0x000000004007b1f2        0x0 
+ *fill*         0x000000004007b1f2        0x0 
+ *fill*         0x000000004007b1f2        0x0 
+ *fill*         0x000000004007b1f2        0x2 
+ .text          0x000000004007b1f4      0x281 /Users/iotsuyuan/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
+                0x000000004007b1f4                __udivdi3
  *(.iram1 .iram1.*)
- *fill*         0x000000004007b46d        0x3 
- .iram1         0x000000004007b470      0x1df /Users/iotsuyuan/esp/esp32/blink/build/bootloader/main/libmain.a(bootloader_start.o)
- *fill*         0x000000004007b64f        0x0 
+ *fill*         0x000000004007b475        0x3 
+ .iram1         0x000000004007b478      0x1df /Users/iotsuyuan/esp/esp32/blink/build/bootloader/main/libmain.a(bootloader_start.o)
+ *fill*         0x000000004007b657        0x0 
  *(.fini.literal)
  *(.fini)
  *(.gnu.version)
-                0x000000004007b64f                _text_end = ABSOLUTE (.)
-                0x000000004007b64f                _etext = .
+                0x000000004007b657                _text_end = ABSOLUTE (.)
+                0x000000004007b657                _etext = .
                 [!provide]                        PROVIDE (abort, 0x4000bba4)
                 [!provide]                        PROVIDE (__absvdi2, 0x4006387c)
                 [!provide]                        PROVIDE (__absvsi2, 0x40063868)
@@ -2820,21 +2820,21 @@ OUTPUT(/Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader.elf elf32-xt
  .debug_frame   0x0000000000000b28       0x28 /Users/iotsuyuan/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_bswapsi2.o)
  .debug_frame   0x0000000000000b50       0x28 /Users/iotsuyuan/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
 
-.debug_info     0x0000000000000000     0x89b8
+.debug_info     0x0000000000000000     0x89bd
  .debug_info    0x0000000000000000     0x282e /Users/iotsuyuan/esp/esp32/blink/build/bootloader/main/libmain.a(bootloader_start.o)
- .debug_info    0x000000000000282e      0x264 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_clock.o)
- .debug_info    0x0000000000002a92      0xbfa /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
- .debug_info    0x000000000000368c      0x258 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
- .debug_info    0x00000000000038e4     0x11de /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
- .debug_info    0x0000000000004ac2      0x526 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
- .debug_info    0x0000000000004fe8      0x44d /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
- .debug_info    0x0000000000005435      0x900 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/log/liblog.a(log.o)
- .debug_info    0x0000000000005d35      0xaf5 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
- .debug_info    0x000000000000682a     0x1386 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_clk.o)
- .debug_info    0x0000000000007bb0      0x3d8 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_init.o)
- .debug_info    0x0000000000007f88      0x39b /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_time.o)
- .debug_info    0x0000000000008323       0xcd /Users/iotsuyuan/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_bswapsi2.o)
- .debug_info    0x00000000000083f0      0x5c8 /Users/iotsuyuan/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
+ .debug_info    0x000000000000282e      0x269 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_clock.o)
+ .debug_info    0x0000000000002a97      0xbfa /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+ .debug_info    0x0000000000003691      0x258 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
+ .debug_info    0x00000000000038e9     0x11de /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+ .debug_info    0x0000000000004ac7      0x526 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
+ .debug_info    0x0000000000004fed      0x44d /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
+ .debug_info    0x000000000000543a      0x900 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/log/liblog.a(log.o)
+ .debug_info    0x0000000000005d3a      0xaf5 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+ .debug_info    0x000000000000682f     0x1386 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_clk.o)
+ .debug_info    0x0000000000007bb5      0x3d8 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_init.o)
+ .debug_info    0x0000000000007f8d      0x39b /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_time.o)
+ .debug_info    0x0000000000008328       0xcd /Users/iotsuyuan/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_bswapsi2.o)
+ .debug_info    0x00000000000083f5      0x5c8 /Users/iotsuyuan/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
 
 .debug_abbrev   0x0000000000000000     0x1b13
  .debug_abbrev  0x0000000000000000      0x4db /Users/iotsuyuan/esp/esp32/blink/build/bootloader/main/libmain.a(bootloader_start.o)
@@ -2852,20 +2852,21 @@ OUTPUT(/Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader.elf elf32-xt
  .debug_abbrev  0x0000000000001954       0x60 /Users/iotsuyuan/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_bswapsi2.o)
  .debug_abbrev  0x00000000000019b4      0x15f /Users/iotsuyuan/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
 
-.debug_loc      0x0000000000000000     0x4c36
+.debug_loc      0x0000000000000000     0x4c73
  .debug_loc     0x0000000000000000     0x1055 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/main/libmain.a(bootloader_start.o)
- .debug_loc     0x0000000000001055      0x638 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
- .debug_loc     0x000000000000168d       0x91 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
- .debug_loc     0x000000000000171e      0xae1 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
- .debug_loc     0x00000000000021ff      0x1b6 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
- .debug_loc     0x00000000000023b5      0x135 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
- .debug_loc     0x00000000000024ea      0x4ad /Users/iotsuyuan/esp/esp32/blink/build/bootloader/log/liblog.a(log.o)
- .debug_loc     0x0000000000002997      0xa20 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
- .debug_loc     0x00000000000033b7      0x9da /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_clk.o)
- .debug_loc     0x0000000000003d91      0x2d2 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_init.o)
- .debug_loc     0x0000000000004063      0x1ca /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_time.o)
- .debug_loc     0x000000000000422d       0x21 /Users/iotsuyuan/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_bswapsi2.o)
- .debug_loc     0x000000000000424e      0x9e8 /Users/iotsuyuan/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
+ .debug_loc     0x0000000000001055       0x3d /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_clock.o)
+ .debug_loc     0x0000000000001092      0x638 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+ .debug_loc     0x00000000000016ca       0x91 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
+ .debug_loc     0x000000000000175b      0xae1 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+ .debug_loc     0x000000000000223c      0x1b6 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
+ .debug_loc     0x00000000000023f2      0x135 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
+ .debug_loc     0x0000000000002527      0x4ad /Users/iotsuyuan/esp/esp32/blink/build/bootloader/log/liblog.a(log.o)
+ .debug_loc     0x00000000000029d4      0xa20 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+ .debug_loc     0x00000000000033f4      0x9da /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_clk.o)
+ .debug_loc     0x0000000000003dce      0x2d2 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_init.o)
+ .debug_loc     0x00000000000040a0      0x1ca /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_time.o)
+ .debug_loc     0x000000000000426a       0x21 /Users/iotsuyuan/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_bswapsi2.o)
+ .debug_loc     0x000000000000428b      0x9e8 /Users/iotsuyuan/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
 
 .debug_aranges  0x0000000000000000      0x4d8
  .debug_aranges
@@ -2912,21 +2913,21 @@ OUTPUT(/Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader.elf elf32-xt
  .debug_ranges  0x0000000000000440       0x40 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_time.o)
  .debug_ranges  0x0000000000000480       0x60 /Users/iotsuyuan/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
 
-.debug_line     0x0000000000000000     0x50f2
+.debug_line     0x0000000000000000     0x5104
  .debug_line    0x0000000000000000      0xf14 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/main/libmain.a(bootloader_start.o)
- .debug_line    0x0000000000000f14      0x1e9 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_clock.o)
- .debug_line    0x00000000000010fd      0x586 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
- .debug_line    0x0000000000001683      0x395 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
- .debug_line    0x0000000000001a18      0xa1b /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
- .debug_line    0x0000000000002433      0x34e /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
- .debug_line    0x0000000000002781      0x3d1 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
- .debug_line    0x0000000000002b52      0x4ee /Users/iotsuyuan/esp/esp32/blink/build/bootloader/log/liblog.a(log.o)
- .debug_line    0x0000000000003040      0xad8 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
- .debug_line    0x0000000000003b18      0xc4a /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_clk.o)
- .debug_line    0x0000000000004762      0x3c8 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_init.o)
- .debug_line    0x0000000000004b2a      0x3a3 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_time.o)
- .debug_line    0x0000000000004ecd       0x90 /Users/iotsuyuan/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_bswapsi2.o)
- .debug_line    0x0000000000004f5d      0x195 /Users/iotsuyuan/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
+ .debug_line    0x0000000000000f14      0x1fb /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_clock.o)
+ .debug_line    0x000000000000110f      0x586 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+ .debug_line    0x0000000000001695      0x395 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_random.o)
+ .debug_line    0x0000000000001a2a      0xa1b /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+ .debug_line    0x0000000000002445      0x34e /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
+ .debug_line    0x0000000000002793      0x3d1 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
+ .debug_line    0x0000000000002b64      0x4ee /Users/iotsuyuan/esp/esp32/blink/build/bootloader/log/liblog.a(log.o)
+ .debug_line    0x0000000000003052      0xad8 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/spi_flash/libspi_flash.a(spi_flash_rom_patch.o)
+ .debug_line    0x0000000000003b2a      0xc4a /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_clk.o)
+ .debug_line    0x0000000000004774      0x3c8 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_init.o)
+ .debug_line    0x0000000000004b3c      0x3a3 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_time.o)
+ .debug_line    0x0000000000004edf       0x90 /Users/iotsuyuan/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_bswapsi2.o)
+ .debug_line    0x0000000000004f6f      0x195 /Users/iotsuyuan/esp/xtensa-esp32-elf/bin/../lib/gcc/xtensa-esp32-elf/5.2.0/libgcc.a(_udivdi3.o)
 
 .debug_str      0x0000000000000000     0x26ae
  .debug_str     0x0000000000000000      0xde3 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/main/libmain.a(bootloader_start.o)
