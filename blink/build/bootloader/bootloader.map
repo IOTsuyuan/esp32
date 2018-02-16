@@ -316,84 +316,84 @@ END GROUP
  *(.jcr)
                 0x000000003fff001c                _data_end = ABSOLUTE (.)
 
-.dram0.rodata   0x000000003fff001c     0x161c
+.dram0.rodata   0x000000003fff001c     0x1624
                 0x000000003fff001c                _rodata_start = ABSOLUTE (.)
  *(.rodata)
  .rodata        0x000000003fff001c       0x14 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/main/libmain.a(bootloader_start.o)
  .rodata        0x000000003fff0030        0x8 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_clock.o)
  *(.rodata.*)
  .rodata.str1.4
-                0x000000003fff0038      0x95e /Users/iotsuyuan/esp/esp32/blink/build/bootloader/main/libmain.a(bootloader_start.o)
- *fill*         0x000000003fff0996        0x2 
+                0x000000003fff0038      0x966 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/main/libmain.a(bootloader_start.o)
+ *fill*         0x000000003fff099e        0x2 
  .rodata.__func__$3802
-                0x000000003fff0998       0x10 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/main/libmain.a(bootloader_start.o)
+                0x000000003fff09a0       0x10 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/main/libmain.a(bootloader_start.o)
  .rodata.str1.4
-                0x000000003fff09a8      0x28e /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
- *fill*         0x000000003fff0c36        0x2 
+                0x000000003fff09b0      0x28e /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+ *fill*         0x000000003fff0c3e        0x2 
  .rodata.str1.4
-                0x000000003fff0c38      0x45a /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+                0x000000003fff0c40      0x45a /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
                                         0x49a (size before relaxing)
- *fill*         0x000000003fff1092        0x2 
+ *fill*         0x000000003fff109a        0x2 
  .rodata.str1.4
-                0x000000003fff1094      0x163 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
- *fill*         0x000000003fff11f7        0x1 
+                0x000000003fff109c      0x163 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
+ *fill*         0x000000003fff11ff        0x1 
  .rodata.str1.4
-                0x000000003fff11f8       0xcc /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
+                0x000000003fff1200       0xcc /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
  .rodata.padding$2493
-                0x000000003fff12c4       0x40 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
+                0x000000003fff12cc       0x40 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
  .rodata.__func__$2489
-                0x000000003fff1304       0x19 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
- *fill*         0x000000003fff131d        0x3 
+                0x000000003fff130c       0x19 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
+ *fill*         0x000000003fff1325        0x3 
  .rodata.__func__$2469
-                0x000000003fff1320       0x17 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
- *fill*         0x000000003fff1337        0x1 
+                0x000000003fff1328       0x17 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
+ *fill*         0x000000003fff133f        0x1 
  .rodata.str1.4
-                0x000000003fff1338      0x258 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x000000003fff1340      0x258 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                         0x255 (size before relaxing)
  .rodata.rtc_clk_xtal_freq_estimate
-                0x000000003fff1590       0x64 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x000000003fff1598       0x64 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_clk.o)
  .rodata.rtc_clk_cpu_freq_value
-                0x000000003fff15f4       0x14 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x000000003fff15fc       0x14 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_clk.o)
  .rodata.__func__$2616
-                0x000000003fff1608       0x17 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_clk.o)
- *fill*         0x000000003fff161f        0x1 
+                0x000000003fff1610       0x17 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_clk.o)
+ *fill*         0x000000003fff1627        0x1 
  .rodata.__func__$2601
-                0x000000003fff1620       0x15 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x000000003fff1628       0x15 /Users/iotsuyuan/esp/esp32/blink/build/bootloader/soc/libsoc.a(rtc_clk.o)
  *(.gnu.linkonce.r.*)
  *(.rodata1)
-                0x000000003fff1635                __XT_EXCEPTION_TABLE_ = ABSOLUTE (.)
+                0x000000003fff163d                __XT_EXCEPTION_TABLE_ = ABSOLUTE (.)
  *(.xt_except_table)
  *(.gcc_except_table)
  *(.gnu.linkonce.e.*)
  *(.gnu.version_r)
  *(.eh_frame)
-                0x000000003fff1638                . = ((. + 0x3) & 0xfffffffffffffffc)
- *fill*         0x000000003fff1635        0x3 
-                0x000000003fff1638                __init_array_start = ABSOLUTE (.)
+                0x000000003fff1640                . = ((. + 0x3) & 0xfffffffffffffffc)
+ *fill*         0x000000003fff163d        0x3 
+                0x000000003fff1640                __init_array_start = ABSOLUTE (.)
  *crtbegin.o(.ctors)
  *(EXCLUDE_FILE(*crtend.o) .ctors)
  *(SORT(.ctors.*))
  *(.ctors)
-                0x000000003fff1638                __init_array_end = ABSOLUTE (.)
+                0x000000003fff1640                __init_array_end = ABSOLUTE (.)
  *crtbegin.o(.dtors)
  *(EXCLUDE_FILE(*crtend.o) .dtors)
  *(SORT(.dtors.*))
  *(.dtors)
-                0x000000003fff1638                __XT_EXCEPTION_DESCS_ = ABSOLUTE (.)
+                0x000000003fff1640                __XT_EXCEPTION_DESCS_ = ABSOLUTE (.)
  *(.xt_except_desc)
  *(.gnu.linkonce.h.*)
-                0x000000003fff1638                __XT_EXCEPTION_DESCS_END__ = ABSOLUTE (.)
+                0x000000003fff1640                __XT_EXCEPTION_DESCS_END__ = ABSOLUTE (.)
  *(.xt_except_desc_end)
  *(.dynamic)
  *(.gnu.version_d)
-                0x000000003fff1638                _rodata_end = ABSOLUTE (.)
-                0x000000003fff1638                _lit4_start = ABSOLUTE (.)
+                0x000000003fff1640                _rodata_end = ABSOLUTE (.)
+                0x000000003fff1640                _lit4_start = ABSOLUTE (.)
  *(*.lit4)
  *(.lit4.*)
  *(.gnu.linkonce.lit4.*)
-                0x000000003fff1638                _lit4_end = ABSOLUTE (.)
-                0x000000003fff1638                . = ALIGN (0x4)
-                0x000000003fff1638                _heap_start = ABSOLUTE (.)
+                0x000000003fff1640                _lit4_end = ABSOLUTE (.)
+                0x000000003fff1640                . = ALIGN (0x4)
+                0x000000003fff1640                _heap_start = ABSOLUTE (.)
 
 .iram.text      0x0000000040078000     0x364f
                 0x0000000040078000                _stext = .

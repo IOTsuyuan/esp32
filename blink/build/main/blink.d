@@ -85,7 +85,7 @@ blink.o: /Users/iotsuyuan/esp/esp32/blink/main/./blink.c \
  /Users/iotsuyuan/esp/esp-idf/components/log/include/esp_log.h \
  /Users/iotsuyuan/esp/esp-idf/components/log/include/esp_log_internal.h \
  /Users/iotsuyuan/esp/esp-idf/components/hal/include/hal_i2c.h \
- /Users/iotsuyuan/esp/esp32/blink/main/./oledfont.h
+ /Users/iotsuyuan/esp/esp32/blink/main/./oled.h
 
 /Users/iotsuyuan/esp/esp-idf/components/driver/include/driver/i2c.h:
 
@@ -259,5 +259,5 @@ blink.o: /Users/iotsuyuan/esp/esp32/blink/main/./blink.c \
 
 /Users/iotsuyuan/esp/esp-idf/components/hal/include/hal_i2c.h:
 
-/Users/iotsuyuan/esp/esp32/blink/main/./oledfont.h:
+/Users/iotsuyuan/esp/esp32/blink/main/./oled.h:
 /Users/iotsuyuan/esp/esp32/blink/main/./blink.c:

@@ -20,7 +20,7 @@
                 "/Users/iotsuyuan/esp/esp-idf/components/log/include",
                 "/Users/iotsuyuan/esp/esp-idf/components/hal/include",
                 "/Users/iotsuyuan/esp/esp32/blink/build/include",
-                "/Users/iotsuyuan/esp/esp-idf/components/lwip/include/lwip/",
+                "/Users/iotsuyuan/esp/esp32/blink/main/library/oled",
                 "/Users/iotsuyuan/esp/esp-idf/components/bt/include",
                 "/Users/iotsuyuan/esp/esp-idf/components/lwip/include/lwip/priv",
                 "/Users/iotsuyuan/esp/esp-idf/components/bt/bluedroid/api/include",
@@ -32,6 +32,7 @@
                 "/Users/iotsuyuan/esp/esp-idf/components/heap/include",
                 "/Users/iotsuyuan/esp/esp-idf/components/soc/include",
                 "/Users/iotsuyuan/esp/esp-idf/components/lwip/include/lwip/lwip",
+                "/Users/iotsuyuan/esp/esp32/blink/library/oled/include",
                 "/System/Library/Frameworks/OpenCL.framework/Versions/A/lib/clang/2.0/include"
             ],
             "defines": [
@@ -55,7 +56,9 @@
                     "/Users/iotsuyuan/esp/esp-idf/components/spi_flash/include",
                     "/Users/iotsuyuan/esp/esp-idf/components/driver/include",
                     "/Users/iotsuyuan/esp/esp-idf/components/log/include",
+                    "/Users/iotsuyuan/esp/esp-idf/components/hal/include",
                     "/Users/iotsuyuan/esp/esp32/blink/build/include",
+                    "/Users/iotsuyuan/esp/esp32/blink/main/library/oled",
                     "/Users/iotsuyuan/esp/esp-idf/components/lwip/include/lwip/",
                     "/Users/iotsuyuan/esp/esp-idf/components/bt/include",
                     "/Users/iotsuyuan/esp/esp-idf/components/lwip/include/lwip/priv",
@@ -66,6 +69,7 @@
                     "/Users/iotsuyuan/esp/esp-idf/components/lwip/include/lwip/port",
                     "/Users/iotsuyuan/esp/esp-idf/components/soc/esp32/include",
                     "/Users/iotsuyuan/esp/esp-idf/components/heap/include",
+                    "/Users/iotsuyuan/esp/esp32/blink/library/oled/include",
                     "/Users/iotsuyuan/esp/esp-idf/components/soc/include"
                 ],
                 "limitSymbolsToIncludedHeaders": true,
