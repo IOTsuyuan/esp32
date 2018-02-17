@@ -1,194 +1,343 @@
+/*
+ bmp180.c - BMP180 pressure sensor driver for ESP32
+
+ This file is part of the ESP32 Everest Run project
+ https://github.com/krzychb/esp32-everest-run
+
+ Copyright (c) 2016 Krzysztof Budzynski <krzychb@gazeta.pl>
+ This work is licensed under the Apache License, Version 2.0, January 2004
+ See the file LICENSE for details.
+ */
+
+#include <math.h>
+#include <freertos/FreeRTOS.h>
+#include <freertos/task.h>
+#include "driver/i2c.h"
+#include "esp_log.h"
+
 #include "bmp180.h"
-#include "sdkconfig.h"
-#include "hal_i2c.h"
-#include "oled.h"
 
-static char tag[] = "bmp180";
+static const char* TAG = "BMP180 I2C Driver";
 
-static short readRegister16(uint8_t reg) {
-	i2c_cmd_handle_t cmd = i2c_cmd_link_create();
-	i2c_master_start(cmd);
-	i2c_master_write_byte(cmd, (BMP180_ADDRESS << 1) | I2C_MASTER_WRITE, 1 /* expect ack */);
-	i2c_master_write_byte(cmd, reg, 1);
-	i2c_master_stop(cmd);
-	i2c_master_cmd_begin(I2C_NUM_0, cmd, 1000/portTICK_PERIOD_MS);
-	i2c_cmd_link_delete(cmd);
+#define ACK_CHECK_EN    0x1     // I2C master will check ack from slave
+#define ACK_CHECK_DIS   0x0     // I2C master will not check ack from slave
+#define ACK_VAL         0x0     // I2C ack value
+#define NACK_VAL        0x1     // I2C nack value
 
-	uint8_t msb;
-	uint8_t lsb;
-	cmd = i2c_cmd_link_create();
-	i2c_master_start(cmd);
-	i2c_master_write_byte(cmd, (BMP180_ADDRESS << 1) | I2C_MASTER_READ, 1 /* expect ack */);
-	i2c_master_read_byte(cmd, &msb, 1);
-	i2c_master_read_byte(cmd, &lsb, 0);
-	i2c_master_stop(cmd);
-	i2c_master_cmd_begin(I2C_NUM_0, cmd, 1000/portTICK_PERIOD_MS);
-	i2c_cmd_link_delete(cmd);
-	short ret = (short)((msb << 8) | lsb);
-	return ret;
-}
+#define BMP180_ADDRESS 0x77     // I2C address of BMP180
 
-static int readRegister24(uint8_t reg) {
-	i2c_cmd_handle_t cmd = i2c_cmd_link_create();
-	i2c_master_start(cmd);
-	i2c_master_write_byte(cmd, (BMP180_ADDRESS << 1) | I2C_MASTER_WRITE, 1 /* expect ack */);
-	i2c_master_write_byte(cmd, reg, 1);
-	i2c_master_stop(cmd);
-	i2c_master_cmd_begin(I2C_NUM_0, cmd, 1000/portTICK_PERIOD_MS);
-	i2c_cmd_link_delete(cmd);
+#define BMP180_ULTRA_LOW_POWER  0
+#define BMP180_STANDARD         1
+#define BMP180_HIGH_RES         2
+#define BMP180_ULTRA_HIGH_RES   3
 
-	uint8_t msb;
-	uint8_t lsb;
-	uint8_t xlsb;
-	cmd = i2c_cmd_link_create();
-	i2c_master_start(cmd);
-	i2c_master_write_byte(cmd, (BMP180_ADDRESS << 1) | I2C_MASTER_READ, 1 /* expect ack */);
-	i2c_master_read_byte(cmd, &msb, 1);
-	i2c_master_read_byte(cmd, &lsb, 1);
-	i2c_master_read_byte(cmd, &xlsb, 0);
-	i2c_master_stop(cmd);
-	i2c_master_cmd_begin(I2C_NUM_0, cmd, 1000/portTICK_PERIOD_MS);
-	i2c_cmd_link_delete(cmd);
-	int ret = (int)((msb << 16) | (lsb << 8) | xlsb);
-	return ret;
-}
+#define BMP180_CAL_AC1          0xAA  // Calibration data (16 bits)
+#define BMP180_CAL_AC2          0xAC  // Calibration data (16 bits)
+#define BMP180_CAL_AC3          0xAE  // Calibration data (16 bits)
+#define BMP180_CAL_AC4          0xB0  // Calibration data (16 bits)
+#define BMP180_CAL_AC5          0xB2  // Calibration data (16 bits)
+#define BMP180_CAL_AC6          0xB4  // Calibration data (16 bits)
+#define BMP180_CAL_B1           0xB6  // Calibration data (16 bits)
+#define BMP180_CAL_B2           0xB8  // Calibration data (16 bits)
+#define BMP180_CAL_MB           0xBA  // Calibration data (16 bits)
+#define BMP180_CAL_MC           0xBC  // Calibration data (16 bits)
+#define BMP180_CAL_MD           0xBE  // Calibration data (16 bits)
 
-static uint32_t readUncompensatedTemp() {
-	i2c_cmd_handle_t cmd = i2c_cmd_link_create();
-	i2c_master_start(cmd);
-	i2c_master_write_byte(cmd, (BMP180_ADDRESS << 1) | I2C_MASTER_WRITE, 1 /* expect ack */);
-	i2c_master_write_byte(cmd, BMP085_REGISTER_CONTROL, 1);
-	i2c_master_write_byte(cmd, BMP085_REGISTER_READTEMPCMD, 1);
-	i2c_master_stop(cmd);
-	i2c_master_cmd_begin(I2C_NUM_0, cmd, 1000/portTICK_PERIOD_MS);
-	i2c_cmd_link_delete(cmd);
-	vTaskDelay(5/portTICK_PERIOD_MS);
-	long ret = (unsigned short)readRegister16(BMP085_REGISTER_TEMPDATA);
-	return ret;
-}
+#define BMP180_CONTROL             0xF4  // Control register
+#define BMP180_DATA_TO_READ        0xF6  // Read results here
+#define BMP180_READ_TEMP_CMD       0x2E  // Request temperature measurement
+#define BMP180_READ_PRESSURE_CMD   0x34  // Request pressure measurement
 
-static uint32_t readUncompensatedPressure(uint32_t mode) {
-	i2c_cmd_handle_t cmd = i2c_cmd_link_create();
-	i2c_master_start(cmd);
-	i2c_master_write_byte(cmd, (BMP180_ADDRESS << 1) | I2C_MASTER_WRITE, 1 /* expect ack */);
-	i2c_master_write_byte(cmd, BMP085_REGISTER_CONTROL, 1);
-	i2c_master_write_byte(cmd, BMP085_REGISTER_READPRESSURECMD + (mode << 6), 1);
-	i2c_master_stop(cmd);
-	i2c_master_cmd_begin(I2C_NUM_0, cmd, 1000/portTICK_PERIOD_MS);
-	i2c_cmd_link_delete(cmd);
-	switch(mode) {
-	case BMP085_MODE_ULTRALOWPOWER:
-		vTaskDelay(10/portTICK_PERIOD_MS);
-		break;
-	case BMP085_MODE_STANDARD:
-		vTaskDelay(20/portTICK_PERIOD_MS);
-		break;
-	case BMP085_MODE_HIGHRES:
-		vTaskDelay(30/portTICK_PERIOD_MS);
-		break;
-	case BMP085_MODE_ULTRAHIGHRES:
-	default:
-		vTaskDelay(40/portTICK_PERIOD_MS);
-		break;
-	}
-	long ret;
-	if (mode != BMP085_MODE_ULTRAHIGHRES) {
-		ret = readRegister24(BMP085_REGISTER_PRESSUREDATA);
-	} else {
-		ret = readRegister24(BMP085_REGISTER_PRESSUREDATA);
-	}
-	return (ret >> (8-mode));
-}
-
-double centigrade_to_fahrenheit(double centigrade) {
-	return centigrade * 9 / 5 + 32.0;
-}
-
-double pascals_to_inHg(double pressure) {
-	return pressure * 0.00029530;
-}
-
-void x() {
+// Calibration parameters
+static int16_t ac1;
+static int16_t ac2;
+static int16_t ac3;
+static uint16_t ac4;
+static uint16_t ac5;
+static uint16_t ac6;
+static int16_t b1;
+static int16_t b2;
+static int16_t mb;
+static int16_t mc;
+static int16_t md;
+static uint8_t oversampling = BMP180_ULTRA_HIGH_RES;
 
 
-	short AC1 = readRegister16(BMP085_REGISTER_CAL_AC1);
-	short AC2 = readRegister16(BMP085_REGISTER_CAL_AC2);
-	short AC3 = readRegister16(BMP085_REGISTER_CAL_AC3);
-	unsigned short AC4 = readRegister16(BMP085_REGISTER_CAL_AC4);
-	unsigned short AC5 = readRegister16(BMP085_REGISTER_CAL_AC5);
-	unsigned short AC6 = readRegister16(BMP085_REGISTER_CAL_AC6);
-	short B1 = readRegister16(BMP085_REGISTER_CAL_B1);
-	short B2 = readRegister16(BMP085_REGISTER_CAL_B2);
-	short MB = readRegister16(BMP085_REGISTER_CAL_MB);
-	short MC = readRegister16(BMP085_REGISTER_CAL_MC);
-	short MD = readRegister16(BMP085_REGISTER_CAL_MD);
-
-
-	//ESP_LOGD(tag, "Params: AC1: %d, AC2: %d, AC3: %d, AC4:%d, AC5: %d, AC6: %d, B1: %d, B2: %d, MB: %d, MC: %d, MD: %d",
-	//	AC1, AC2, AC3, AC4, AC5, AC6, B1, B2, MB, MC, MD);
-
-
-	int32_t bmpMode = BMP085_MODE_STANDARD;
-	int32_t UT = readUncompensatedTemp();
-	int32_t UP = readUncompensatedPressure(bmpMode);
-	unsigned char OLED_Tem[] = "TEM =   .";
-	unsigned char OLED_Pas[] = "PAS = ";
-
-  int32_t X1 = (UT - (int32_t)AC6) * ((int32_t)AC5) >> 15;
-  int32_t X2 = ((int32_t)MC<<11) / (X1+(int32_t)MD);
-  int32_t B5 =  X1 + X2;
-  double temp = ((B5 + 8)>>4)/10.0;
-
-//  ESP_LOGD(tag, "Temp = %.1foC = %.1foF", temp, centigrade_to_fahrenheit(temp));
-//  printf("Temp = %.1foC = %.1foF\n", temp, centigrade_to_fahrenheit(temp));
-  OLED_ShowString(0,0,OLED_Tem,16);
-  OLED_ShowNum(48,0,temp/1,2,16);
-  OLED_ShowNum(72,0,temp*10/1,1,16);
-  int32_t B6 = B5 - 4000;
-  X1 = (B2 * ((B6 * B6) >> 12)) >> 11;
-  X2 = (AC2 * B6) >> 11;
-  int32_t X3 = X1 + X2;
-  int32_t B3 = (((((int32_t)AC1)*4 + X3) << bmpMode) + 2) >> 2;
-  X1 = (AC3 * B6) >> 13;
-  X2 = (B1 * ((B6 * B6) >> 12)) >> 16;
-  X3 = ((X1 + X2) + 2) >> 2;
-  uint32_t B4 = ((uint32_t)AC4 * (uint32_t)(X3 + 32768)) >> 15;
-  uint32_t B7 = ((((uint32_t)UP) - B3) * (50000 >> bmpMode));
-  int32_t P;
-  if (B7 < 0x80000000) {
-  	P = (B7 << 1) / B4;
-  } else {
-  	P = (B7 / B4) << 1;
-  }
-  X1 = (P >> 8) * (P >> 8);
-  X1 = (X1 * 3038) >> 16;
-  X2 = (-7357 * P) >> 16;
-  int32_t pressure = P + ((X1 + X2 + 3791) >> 4);
-
-  int32_t high=(44330.0 * (1.0-pow((float)pressure / 101325.0, 1.0/5.255)) );  
-//  int32_t high2=(44330.0 * (1.0-pow(((float)pressure) * 2 / 101325.0, 1.0/5.255)) );  
-//  ESP_LOGD(tag, "pressure = %d pa, = %f inHg, UP=%d", pressure, pascals_to_inHg(pressure), UP);
-//  printf("pressure = %d pa, = %d m =%d\n", pressure, high, UP);
-  OLED_ShowString(0,2,OLED_Pas,16);
-  OLED_ShowNum(48,2,pressure,6,16);
+static esp_err_t bmp180_master_write_slave(i2c_port_t i2c_num, uint8_t* data_wr, size_t size)
+{
+    i2c_cmd_handle_t cmd = i2c_cmd_link_create();
+    i2c_master_start(cmd);
+    i2c_master_write_byte(cmd, ( BMP180_ADDRESS  << 1 ) | I2C_MASTER_WRITE, ACK_CHECK_EN);
+    i2c_master_write(cmd, data_wr, size, ACK_CHECK_EN);
+    i2c_master_stop(cmd);
+    esp_err_t ret = i2c_master_cmd_begin(i2c_num, cmd, 1000 / portTICK_RATE_MS);
+    i2c_cmd_link_delete(cmd);
+    return ret;
 }
 
 
-
-void task_bmp180(void *ignore) {
-/*	i2c_config_t conf;
-	conf.mode = I2C_MODE_MASTER;
-	conf.sda_io_num = 12;
-	conf.scl_io_num = 13;
-	conf.sda_pullup_en = GPIO_PULLUP_ENABLE;
-	conf.scl_pullup_en = GPIO_PULLUP_ENABLE;
-	conf.master.clk_speed = 100000;
-	i2c_param_config(I2C_NUM_0, &conf);
-
-	i2c_driver_install(I2C_NUM_0, I2C_MODE_MASTER, 0, 0, 0);*/
-	while(1) {
-		x();
-		vTaskDelay(1000/portTICK_PERIOD_MS);
-	}
-	vTaskDelete(NULL);
+static esp_err_t bmp180_write_reg(i2c_port_t i2c_num, uint8_t reg, uint8_t cmd)
+{
+    uint8_t data_wr[] = {reg, cmd};
+    esp_err_t err = bmp180_master_write_slave(i2c_num, data_wr, 2);
+    if (err != ESP_OK) {
+        ESP_LOGE(TAG, "Write [0x%02x] = 0x%02x failed, err = %d", reg, cmd, err);
+    }
+    return err;
 }
+
+
+static esp_err_t bmp180_master_read_slave(i2c_port_t i2c_num, uint8_t* data_rd, size_t size)
+{
+    if (size == 0) {
+        return ESP_OK;
+    }
+    i2c_cmd_handle_t cmd = i2c_cmd_link_create();
+    i2c_master_start(cmd);
+    i2c_master_write_byte(cmd, ( BMP180_ADDRESS << 1 ) | I2C_MASTER_READ, ACK_CHECK_EN);
+    if (size > 1) {
+        i2c_master_read(cmd, data_rd, size - 1, ACK_VAL);
+    }
+    i2c_master_read_byte(cmd, data_rd + size - 1, NACK_VAL);
+    i2c_master_stop(cmd);
+    esp_err_t ret = i2c_master_cmd_begin(i2c_num, cmd, 1000 / portTICK_RATE_MS);
+    i2c_cmd_link_delete(cmd);
+    return ret;
+}
+
+
+static esp_err_t bmp180_read_int16(i2c_port_t i2c_num, uint8_t reg, int16_t* value)
+{
+    esp_err_t err = bmp180_master_write_slave(i2c_num, &reg, 1);
+    if (err == ESP_OK) {
+        uint8_t data_rd[2] = {0};
+        err = bmp180_master_read_slave(i2c_num, data_rd, 2);
+        if (err == ESP_OK) {
+            *value = (int16_t) ((data_rd[0] << 8) | data_rd[1]);
+        }
+    }
+    if (err != ESP_OK) {
+        ESP_LOGE(TAG, "Read [0x%02x] int16 failed, err = %d", reg, err);
+    }
+    return err;
+}
+
+
+static esp_err_t bmp180_read_uint16(i2c_port_t i2c_num, uint8_t reg, uint16_t* value)
+{
+    esp_err_t err = bmp180_master_write_slave(i2c_num, &reg, 1);
+    if (err == ESP_OK) {
+        uint8_t data_rd[2] = {0};
+        err = bmp180_master_read_slave(i2c_num, data_rd, 2);
+        if (err == ESP_OK) {
+            *value = (uint16_t) ((data_rd[0] << 8) | data_rd[1]);
+        }
+    }
+    if (err != ESP_OK) {
+        ESP_LOGE(TAG, "Read [0x%02x] uint16 failed, err = %d", reg, err);
+    }
+    return err;
+}
+
+
+static esp_err_t bmp180_read_uint32(i2c_port_t i2c_num, uint8_t reg, uint32_t* value)
+{
+    esp_err_t err = bmp180_master_write_slave(i2c_num, &reg, 1);
+    if (err == ESP_OK) {
+        uint8_t data_rd[3] = {0};
+        err = bmp180_master_read_slave(i2c_num, data_rd, 3);
+        if (err == ESP_OK) {
+            *value = (uint32_t) ((data_rd[0] << 16) | (data_rd[1] << 8) | data_rd[2]);
+        }
+    }
+    if (err != ESP_OK) {
+        ESP_LOGE(TAG, "Read [0x%02x] uint16 failed, err = %d", reg, err);
+    }
+    return err;
+}
+
+
+static esp_err_t bmp180_read_uncompensated_temperature(int16_t* temp)
+{
+    esp_err_t err = bmp180_write_reg(I2C_NUM_0, BMP180_CONTROL, BMP180_READ_TEMP_CMD);
+    if (err == ESP_OK) {
+        TickType_t xDelay = 5 / portTICK_PERIOD_MS;
+        if (xDelay == 0) {
+            xDelay = 1;
+        }
+        vTaskDelay(xDelay);
+        err = bmp180_read_int16(I2C_NUM_0, BMP180_DATA_TO_READ, temp);
+    }
+    if (err != ESP_OK) {
+        ESP_LOGE(TAG, "Read uncompensated temperature failed, err = %d", err);
+    }
+    return err;
+}
+
+
+static esp_err_t bmp180_calculate_b5(int32_t* b5)
+{
+    int16_t ut;
+    int32_t x1, x2;
+
+    esp_err_t err = bmp180_read_uncompensated_temperature(&ut);
+    if (err == ESP_OK) {
+        x1 = ((ut - (int32_t) ac6) * (int32_t) ac5) >> 15;
+        x2 = ((int32_t) mc << 11) / (x1 + md);
+        *b5 = x1 + x2;
+    } else {
+        ESP_LOGE(TAG, "Calculate b5 failed, err = %d", err);
+    }
+    return err;
+}
+
+static uint32_t bmp180_read_uncompensated_pressure(uint32_t* up)
+{
+    esp_err_t err = bmp180_write_reg(I2C_NUM_0, BMP180_CONTROL, BMP180_READ_PRESSURE_CMD + (oversampling << 6));
+    if (err == ESP_OK) {
+        TickType_t xDelay = (2 + (3 << oversampling)) / portTICK_PERIOD_MS;
+        if (xDelay == 0) {
+            xDelay = 1;
+        }
+        vTaskDelay(xDelay);
+        err = bmp180_read_uint32(I2C_NUM_0, BMP180_DATA_TO_READ, up);
+        if (err == ESP_OK) {
+            *up >>= (8 - oversampling);
+        }
+    }
+    if (err != ESP_OK) {
+        ESP_LOGE(TAG, "Read uncompensated pressure failed, err = %d", err);
+    }
+    return err;
+}
+
+
+esp_err_t bmp180_read_temperature(float* temperature)
+{
+    int32_t b5;
+
+    esp_err_t err = bmp180_calculate_b5(&b5);
+    if (err == ESP_OK) {
+        *temperature = ((b5 + 8) >> 4) / 10.0;
+    } else {
+        ESP_LOGE(TAG, "Read temperature failed, err = %d", err);
+    }
+    return err;
+}
+
+
+esp_err_t bmp180_read_pressure(uint32_t* pressure)
+{
+    int32_t b3, b5, b6, x1, x2, x3, p;
+    uint32_t up, b4, b7;
+    esp_err_t err;
+
+    err = bmp180_calculate_b5(&b5);
+    if (err == ESP_OK) {
+        b6 = b5 - 4000;
+        x1 = (b2 * (b6 * b6) >> 12) >> 11;
+        x2 = (ac2 * b6) >> 11;
+        x3 = x1 + x2;
+        b3 = (((((int32_t)ac1) * 4 + x3) << oversampling) + 2) >> 2;
+
+        x1 = (ac3 * b6) >> 13;
+        x2 = (b1 * ((b6 * b6) >> 12)) >> 16;
+        x3 = ((x1 + x2) + 2) >> 2;
+        b4 = (ac4 * (uint32_t)(x3 + 32768)) >> 15;
+
+        err  = bmp180_read_uncompensated_pressure(&up);
+        if (err == ESP_OK) {
+            b7 = ((uint32_t)(up - b3) * (50000 >> oversampling));
+            if (b7 < 0x80000000) {
+                p = (b7 << 1) / b4;
+            } else {
+                p = (b7 / b4) << 1;
+            }
+
+            x1 = (p >> 8) * (p >> 8);
+            x1 = (x1 * 3038) >> 16;
+            x2 = (-7357 * p) >> 16;
+            p += (x1 + x2 + 3791) >> 4;
+            *pressure = p;
+        }
+    }
+
+    if (err != ESP_OK) {
+        ESP_LOGE(TAG, "Pressure compensation failed, err = %d", err);
+    }
+
+    return err;
+}
+
+
+esp_err_t bmp180_read_altitude(uint32_t reference_pressure, float* altitude)
+{
+    uint32_t absolute_pressure;
+    esp_err_t err = bmp180_read_pressure(&absolute_pressure);
+    if (err == ESP_OK) {
+        *altitude =  44330 * (1.0 - powf(absolute_pressure / (float) reference_pressure, 0.190295));
+    } else {
+        ESP_LOGE(TAG, "Read altitude failed, err = %d", err);
+    }
+    return err;
+}
+
+
+esp_err_t bmp180_init(int pin_sda, int pin_scl)
+{
+    esp_err_t err;
+
+    i2c_config_t conf;
+    conf.mode = I2C_MODE_MASTER;
+    conf.sda_io_num = pin_sda;
+    conf.sda_pullup_en = GPIO_PULLUP_ENABLE;
+    conf.scl_io_num = pin_scl;
+    conf.scl_pullup_en = GPIO_PULLUP_ENABLE;
+    conf.master.clk_speed = 100000 ;
+
+    err = i2c_param_config(I2C_NUM_0, &conf);
+    if (err != ESP_OK) {
+        ESP_LOGE(TAG, "I2C driver configuration failed with error = %d", err);
+        return ESP_ERR_BMP180_NOT_DETECTED;
+    }
+    i2c_driver_install(I2C_NUM_0, I2C_MODE_MASTER, 0, 0, 0);
+    if (err != ESP_OK) {
+        ESP_LOGE(TAG, "I2C driver installation failed with error = %d", err);
+        return ESP_ERR_BMP180_NOT_DETECTED;
+    }
+    ESP_LOGI(TAG, "I2C master driver has been installed.");
+
+    uint8_t reg = 0x00;
+    err = bmp180_master_write_slave(I2C_NUM_0, &reg, 1);
+
+    if (err != ESP_OK) {
+        ESP_LOGE(TAG, "BMP180 sensor not found at 0x%02x", BMP180_ADDRESS);
+        return ESP_ERR_BMP180_NOT_DETECTED;
+    }
+
+    ESP_LOGI(TAG, "BMP180 sensor found at 0x%02x", BMP180_ADDRESS);
+    err  = bmp180_read_int16(I2C_NUM_0, BMP180_CAL_AC1, &ac1);
+    err |= bmp180_read_int16(I2C_NUM_0, BMP180_CAL_AC2, &ac2);
+    err |= bmp180_read_int16(I2C_NUM_0, BMP180_CAL_AC3, &ac3);
+    err |= bmp180_read_uint16(I2C_NUM_0, BMP180_CAL_AC4, &ac4);
+    err |= bmp180_read_uint16(I2C_NUM_0, BMP180_CAL_AC5, &ac5);
+    err |= bmp180_read_uint16(I2C_NUM_0, BMP180_CAL_AC6, &ac6);
+    err |= bmp180_read_int16(I2C_NUM_0, BMP180_CAL_B1, &b1);
+    err |= bmp180_read_int16(I2C_NUM_0, BMP180_CAL_B2, &b2);
+    err |= bmp180_read_int16(I2C_NUM_0, BMP180_CAL_MB, &mb);
+    err |= bmp180_read_int16(I2C_NUM_0, BMP180_CAL_MC, &mc);
+    err |= bmp180_read_int16(I2C_NUM_0, BMP180_CAL_MD, &md);
+
+    if (err != ESP_OK) {
+        ESP_LOGE(TAG, "BMP180 sensor calibration read failure, err = %d", err);
+        return ESP_ERR_BMP180_CALIBRATION_FAILURE;
+    }
+
+    ESP_LOGI(TAG, "AC1: %d, AC2: %d, AC3: %d, AC4: %d, AC5: %d, AC6: %d", ac1, ac2, ac3, ac4, ac5, ac6);
+    ESP_LOGI(TAG, "B1: %d, B2: %d, MB: %d, MC: %d, MD: %d", b1, b2, mb, mc, md);
+
+    return ESP_OK;
+}
+
+
+

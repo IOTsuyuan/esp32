@@ -8,90 +8,134 @@
 #include "oled.h"
 #include "rom/ets_sys.h"
 #include "driver/gpio.h"
+#include "DHT11.h"
+#include "nvs_flash.h"
+#include "esp_system.h"
+#include "esp_log.h"
 
-#define DHT11_IO GPIO_NUM_27
+static const char *BMP180_I2C_LOG_TAG = "BMP180 I2C Read";
+static const char *DHT11_LOG_TAG = "DHT11 Read";
 
-void io_out(uint32_t level){
-	gpio_set_level(DHT11_IO, level);
-}
+static const unsigned char DHT11_TEM[] = "DTEM:";
+static const unsigned char DHT11_HUM[] = "DHUM:";
+static const unsigned char BMP180_PRESSURE[] = "PRE:";
+static const unsigned char BMP180_ALTITUDE[] = "ALT:";
+static const unsigned char BMP180_TEM[] = "BTEM:";
+static const unsigned char LOADING[] = "LOADING...";
 
-int io_in(){
-	return gpio_get_level(DHT11_IO);
-}
+#define REFERENCE_PRESSURE 101325l
 
-void DHT11_start()
+#define I2C_PIN_SDA 12
+#define I2C_PIN_SCL 13
+
+#define blink_gpio GPIO_NUM_5
+
+void blink_task(void *pvParameter)
 {
-   io_out(1);
-   ets_delay_us(2);
-   io_out(0);
-   vTaskDelay(20/portTICK_PERIOD_MS);   //延时18ms以上
-   io_out(1);
-   ets_delay_us(40);
+    gpio_set_direction(blink_gpio, GPIO_MODE_OUTPUT);
+    gpio_set_level(blink_gpio,0);
+    while(1)
+    {
+        gpio_set_level(blink_gpio, 1);
+        vTaskDelay(500 / portTICK_RATE_MS);
+        gpio_set_level(blink_gpio, 0);
+        vTaskDelay(500 / portTICK_RATE_MS);
+    }
 }
 
-unsigned char DHT11_rec_byte()      //接收一个字节
+void DHT_task(void *pvParameter)
 {
-   unsigned char i,dat=0;
-  for(i=0;i<8;i++)    //从高到低依次接收8位数据
-   {          
-      while(!io_in());   ////等待50us低电平过去
-      ets_delay_us(50);     //延时60us，如果还为高则数据为1，否则为0 
-      dat<<=1;           //移位使正确接收8位数据，数据为0时直接移位
-      if(io_in()==1)    //数据为1时，使dat加1来接收数据1
-         dat+=1;
-      while(io_in());  //等待数据线拉低    
-    }  
-    return dat;
+	int tem_hum[3] = {0};
+   setDHTPin(26);
+//   getData(tem_hum);
+   printf("Starting DHT measurement!\n");
+   while(1)
+   {
+	    getData(tem_hum);
+        ESP_LOGI(DHT11_LOG_TAG, "Temperature reading %d\n",tem_hum[1]);
+        ESP_LOGI(DHT11_LOG_TAG, "F temperature is %d\n", tem_hum[2]);
+        ESP_LOGI(DHT11_LOG_TAG, "Humidity reading %d\n",tem_hum[0]);
+        OLED_ShowNum(40, 0, tem_hum[1], 2, 16);
+        OLED_ShowNum(104, 0, tem_hum[0], 2, 16);
+		vTaskDelay(3000 / portTICK_RATE_MS);
+   }
 }
 
+void bmp180_i2c_task(void *pvParameter)
+{
+    while(1) {
+        esp_err_t err;
+        uint32_t pressure;
+        float altitude;
+        float temperature;
 
-
-void task_dht11(void *ignore) {
-
-	unsigned char R_H,R_L,T_H,T_L,revise; 
-
-	gpio_config_t DHT11_IO_CFG = {
-		.pin_bit_mask = DHT11_IO,
-		.mode = GPIO_MODE_OUTPUT,
-		.pull_up_en = GPIO_PULLUP_ENABLE,
-		.pull_down_en = GPIO_PULLDOWN_DISABLE,
-		.intr_type = GPIO_INTR_DISABLE
-	};
-	gpio_config(&DHT11_IO_CFG);		//初始化与DHT11通信IO
-
-	while(1) {
-		DHT11_start();
-		gpio_set_pull_mode(DHT11_IO,GPIO_MODE_INPUT);
-		if(io_in()==0)
-		{
-			while(io_in()==0);   //等待拉高     
-			ets_delay_us(40);  //拉高后延时80us
-			R_H=DHT11_rec_byte();    //接收湿度高八位  
-			R_L=DHT11_rec_byte();    //接收湿度低八位  
-			T_H=DHT11_rec_byte();    //接收温度高八位  
-			T_L=DHT11_rec_byte();    //接收温度低八位
-			revise=DHT11_rec_byte(); //接收校正位
-
-			ets_delay_us(25);    //结束
-			printf("true: %c, %c, %c, %c",R_H,R_L,T_H,T_L);
-			if((R_H+R_L+T_H+T_L)==revise)      //校正
-			{
-				
-			} 
-        /*数据处理，方便显示*/
-		}
-		gpio_set_pull_mode(DHT11_IO,GPIO_MODE_OUTPUT);
-		vTaskDelay(1000/portTICK_PERIOD_MS);
-	}
-	vTaskDelete(NULL);
+        err = bmp180_read_pressure(&pressure);
+        if (err != ESP_OK) {
+            ESP_LOGE(BMP180_I2C_LOG_TAG, "Reading of pressure from BMP180 failed, err = %d", err);
+        }
+        err = bmp180_read_altitude(REFERENCE_PRESSURE, &altitude);
+        if (err != ESP_OK) {
+            ESP_LOGE(BMP180_I2C_LOG_TAG, "Reading of altitude from BMP180 failed, err = %d", err);
+        }
+        err = bmp180_read_temperature(&temperature);
+        if (err != ESP_OK) {
+            ESP_LOGE(BMP180_I2C_LOG_TAG, "Reading of temperature from BMP180 failed, err = %d", err);
+        }
+        ESP_LOGI(BMP180_I2C_LOG_TAG, "Pressure %d Pa, Altitude %.1f m, Temperature : %.1f oC", pressure, altitude, temperature);
+        OLED_ShowNum(32, 2, pressure, 6, 16);
+        if(altitude < 0){
+            OLED_ShowChar(32, 4, '-', 16);
+            OLED_ShowNum(40, 4, -altitude, 2, 16);
+            OLED_ShowChar(56, 4, '.', 16);
+            OLED_ShowNum(64, 4, (uint32_t)(altitude / 1 * 10), 1, 16);
+        }
+        else{
+            OLED_ShowNum(32, 4, altitude, 2, 16);
+            OLED_ShowChar(48, 4, '.', 16);
+            OLED_ShowNum(56, 4, (uint32_t)(altitude / 1 * 10), 1, 16);
+        }
+        if(temperature < 0){
+            OLED_ShowChar(40, 6, '-', 16);
+            OLED_ShowNum(48, 6, -temperature, 2, 16);
+            OLED_ShowChar(64, 6, '.', 16);
+            OLED_ShowNum(72, 6, (uint32_t)(temperature / 1 * 10), 1, 16);
+        }
+        else{
+            OLED_ShowNum(40, 6, temperature, 2, 16);
+            OLED_ShowChar(56, 6, '.', 16);
+            OLED_ShowNum(64, 6, (uint32_t)(temperature / 1 * 10), 1, 16);
+        }
+        vTaskDelay(1000 / portTICK_PERIOD_MS);
+    }
 }
-
-
 
 void app_main()
 {
-	OLED_Init();
-	OLED_Clean();
-//	xTaskCreate(&task_dht11, "task_dht11", 1024*5, NULL, 5, NULL);
-//    xTaskCreate(&task_bmp180, "task_bmp180", 1024*4, NULL, 5, NULL);
+
+    esp_err_t err;
+    OLED_Init();
+    OLED_Clean();
+
+    OLED_ShowString(14, 3, LOADING, 16);
+    vTaskDelay(1000 / portTICK_RATE_MS);
+    OLED_Clean();
+    OLED_ShowString(0, 0, DHT11_TEM, 16);
+    OLED_ShowString(64, 0, DHT11_HUM, 16);
+    OLED_ShowString(0, 2, BMP180_PRESSURE, 16);
+    OLED_ShowString(0, 4, BMP180_ALTITUDE, 16);
+    OLED_ShowString(0, 6, BMP180_TEM, 16);
+    xTaskCreate(&blink_task, "blink_task", 1024, NULL, 5, NULL);
+    ESP_LOGI(BMP180_I2C_LOG_TAG, "Main application is starting...");
+    err = bmp180_init(I2C_PIN_SDA, I2C_PIN_SCL);
+    if(err == ESP_OK){
+        xTaskCreate(&bmp180_i2c_task, "bmp180_i2c_task", 1024*4, NULL, 5, NULL);
+    } else {
+        ESP_LOGE(BMP180_I2C_LOG_TAG, "BMP180 init failed with error = %d", err);
+    }
+
+    xTaskCreate(&DHT_task, "DHT_task", 2048, NULL, 5, NULL);
+    
 }
+
+
+

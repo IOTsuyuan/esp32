@@ -1,42 +1,35 @@
-#ifndef _bmp180_H_
-#define _bmp180_H_
+/*
+ bmp180.h - BMP180 pressure sensor I2C driver for ESP32
 
-#include "math.h"
+ This file is part of the ESP32 Everest Run project
+ https://github.com/krzychb/esp32-everest-run
 
-#define BMP180_ADDRESS 0x77
+ Copyright (c) 2016 Krzysztof Budzynski <krzychb@gazeta.pl>
+ This work is licensed under the Apache License, Version 2.0, January 2004
+ See the file LICENSE for details.
+*/
 
-enum
-{
-	BMP085_REGISTER_CAL_AC1            = 0xAA,  // R   Calibration data (16 bits)
-	BMP085_REGISTER_CAL_AC2            = 0xAC,  // R   Calibration data (16 bits)
-	BMP085_REGISTER_CAL_AC3            = 0xAE,  // R   Calibration data (16 bits)
-	BMP085_REGISTER_CAL_AC4            = 0xB0,  // R   Calibration data (16 bits)
-	BMP085_REGISTER_CAL_AC5            = 0xB2,  // R   Calibration data (16 bits)
-	BMP085_REGISTER_CAL_AC6            = 0xB4,  // R   Calibration data (16 bits)
-	BMP085_REGISTER_CAL_B1             = 0xB6,  // R   Calibration data (16 bits)
-	BMP085_REGISTER_CAL_B2             = 0xB8,  // R   Calibration data (16 bits)
-	BMP085_REGISTER_CAL_MB             = 0xBA,  // R   Calibration data (16 bits)
-	BMP085_REGISTER_CAL_MC             = 0xBC,  // R   Calibration data (16 bits)
-	BMP085_REGISTER_CAL_MD             = 0xBE,  // R   Calibration data (16 bits)
-	BMP085_REGISTER_CHIPID             = 0xD0,
-	BMP085_REGISTER_VERSION            = 0xD1,
-	BMP085_REGISTER_SOFTRESET          = 0xE0,
-	BMP085_REGISTER_CONTROL            = 0xF4,
-	BMP085_REGISTER_TEMPDATA           = 0xF6,
-	BMP085_REGISTER_PRESSUREDATA       = 0xF6,
-	BMP085_REGISTER_READTEMPCMD        = 0x2E,
-	BMP085_REGISTER_READPRESSURECMD    = 0x34 // 0011 0100
-};
+#ifndef BMP180_H
+#define BMP180_H
 
-typedef enum
-{
-  BMP085_MODE_ULTRALOWPOWER          = 0,   
-  BMP085_MODE_STANDARD               = 1,
-  BMP085_MODE_HIGHRES                = 2,
-  BMP085_MODE_ULTRAHIGHRES           = 3
-} bmp085_mode_t;    //模式不同，默认是 1 更改精度可能要修改读取数据函数
+#include "esp_err.h"
 
-void task_bmp180(void *ignore);
-
-
+#ifdef __cplusplus
+extern "C" {
 #endif
+
+#define ESP_ERR_BMP180_BASE                  0x30000
+#define ESP_ERR_TOO_SLOW_TICK_RATE           (ESP_ERR_BMP180_BASE + 1)
+#define ESP_ERR_BMP180_NOT_DETECTED          (ESP_ERR_BMP180_BASE + 2)
+#define ESP_ERR_BMP180_CALIBRATION_FAILURE   (ESP_ERR_BMP180_BASE + 3)
+
+esp_err_t bmp180_init(int pin_sda, int pin_scl);
+esp_err_t bmp180_read_temperature(float* temperature);
+esp_err_t bmp180_read_pressure(uint32_t* pressure);
+esp_err_t bmp180_read_altitude(uint32_t reference_pressure, float* altitude);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif  // BMP180_H

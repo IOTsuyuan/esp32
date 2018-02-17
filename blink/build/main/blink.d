@@ -86,8 +86,10 @@ blink.o: /Users/iotsuyuan/esp/esp32/blink/main/./blink.c \
  /Users/iotsuyuan/esp/esp-idf/components/log/include/esp_log_internal.h \
  /Users/iotsuyuan/esp/esp-idf/components/hal/include/hal_i2c.h \
  /Users/iotsuyuan/esp/esp32/blink/main/./bmp180.h \
- /Users/iotsuyuan/esp/esp-idf/components/newlib/include/math.h \
- /Users/iotsuyuan/esp/esp-idf/components/hal/include/oled.h
+ /Users/iotsuyuan/esp/esp-idf/components/hal/include/oled.h \
+ /Users/iotsuyuan/esp/esp32/blink/main/./DHT11.h \
+ /Users/iotsuyuan/esp/esp-idf/components/nvs_flash/include/nvs_flash.h \
+ /Users/iotsuyuan/esp/esp-idf/components/nvs_flash/include/nvs.h
 
 /Users/iotsuyuan/esp/esp-idf/components/driver/include/driver/i2c.h:
 
@@ -263,7 +265,11 @@ blink.o: /Users/iotsuyuan/esp/esp32/blink/main/./blink.c \
 
 /Users/iotsuyuan/esp/esp32/blink/main/./bmp180.h:
 
-/Users/iotsuyuan/esp/esp-idf/components/newlib/include/math.h:
-
 /Users/iotsuyuan/esp/esp-idf/components/hal/include/oled.h:
+
+/Users/iotsuyuan/esp/esp32/blink/main/./DHT11.h:
+
+/Users/iotsuyuan/esp/esp-idf/components/nvs_flash/include/nvs_flash.h:
+
+/Users/iotsuyuan/esp/esp-idf/components/nvs_flash/include/nvs.h:
 /Users/iotsuyuan/esp/esp32/blink/main/./blink.c:

@@ -21,7 +21,17 @@
         "iterator": "c",
         "vector": "c",
         "ets_sys.h": "c",
-        "queue": "c"
+        "queue": "c",
+        "esp_system.h": "c",
+        "bmp180.h": "c",
+        "__functional_base": "c",
+        "__functional_base_03": "c",
+        "__tuple": "c",
+        "functional": "c",
+        "limits": "c",
+        "tuple": "c",
+        "type_traits": "c",
+        "utility": "c"
     },
     "C_Cpp.intelliSenseEngineFallback": "Enabled",
 }
