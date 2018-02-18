@@ -16,12 +16,12 @@
 static const char *BMP180_I2C_LOG_TAG = "BMP180 I2C Read";
 static const char *DHT11_LOG_TAG = "DHT11 Read";
 
-static const unsigned char DHT11_TEM[] = "DTEM:";
-static const unsigned char DHT11_HUM[] = "DHUM:";
-static const unsigned char BMP180_PRESSURE[] = "PRE:";
-static const unsigned char BMP180_ALTITUDE[] = "ALT:";
-static const unsigned char BMP180_TEM[] = "BTEM:";
-static const unsigned char LOADING[] = "LOADING...";
+unsigned char DHT11_TEM[] = "DTEM:";
+unsigned char DHT11_HUM[] = "DHUM:";
+unsigned char BMP180_PRESSURE[] = "PRE:";
+unsigned char BMP180_ALTITUDE[] = "ALT:";
+unsigned char BMP180_TEM[] = "BTEM:";
+unsigned char LOADING[] = "LOADING...";
 
 #define REFERENCE_PRESSURE 101325l
 
@@ -109,21 +109,25 @@ void bmp180_i2c_task(void *pvParameter)
     }
 }
 
-void app_main()
+void oled_show()
 {
-
-    esp_err_t err;
     OLED_Init();
     OLED_Clean();
-
     OLED_ShowString(14, 3, LOADING, 16);
-    vTaskDelay(1000 / portTICK_RATE_MS);
+    vTaskDelay(1000 / portTICK_RATE_MS);    //等待dht11稳定下来
     OLED_Clean();
     OLED_ShowString(0, 0, DHT11_TEM, 16);
     OLED_ShowString(64, 0, DHT11_HUM, 16);
     OLED_ShowString(0, 2, BMP180_PRESSURE, 16);
     OLED_ShowString(0, 4, BMP180_ALTITUDE, 16);
     OLED_ShowString(0, 6, BMP180_TEM, 16);
+}
+
+void app_main()
+{
+
+    esp_err_t err;
+    
     xTaskCreate(&blink_task, "blink_task", 1024, NULL, 5, NULL);
     ESP_LOGI(BMP180_I2C_LOG_TAG, "Main application is starting...");
     err = bmp180_init(I2C_PIN_SDA, I2C_PIN_SCL);
