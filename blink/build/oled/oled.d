@@ -1,5 +1,5 @@
-oled.o: /Users/iotsuyuan/esp/esp-idf/components/oled/./oled.c \
- /Users/iotsuyuan/esp/esp-idf/components/hal/include/oledfont.h \
+oled.o: /Users/iotsuyuan/esp/esp32/blink/main/oled/./oled.c \
+ /Users/iotsuyuan/esp/esp32/blink/main/oled/include/oledfont.h \
  /Users/iotsuyuan/esp/esp-idf/components/hal/include/hal_i2c.h \
  /Users/iotsuyuan/esp/esp-idf/components/driver/include/driver/i2c.h \
  /Users/iotsuyuan/esp/esp-idf/components/esp32/include/esp_types.h \
@@ -84,9 +84,9 @@ oled.o: /Users/iotsuyuan/esp/esp-idf/components/oled/./oled.c \
  /Users/iotsuyuan/esp/esp-idf/components/freertos/include/freertos/list.h \
  /Users/iotsuyuan/esp/esp-idf/components/freertos/include/freertos/queue.h \
  /Users/iotsuyuan/esp/esp-idf/components/freertos/include/freertos/ringbuf.h \
- /Users/iotsuyuan/esp/esp-idf/components/oled/include/oled.h
+ /Users/iotsuyuan/esp/esp32/blink/main/oled/include/oled.h
 
-/Users/iotsuyuan/esp/esp-idf/components/hal/include/oledfont.h:
+/Users/iotsuyuan/esp/esp32/blink/main/oled/include/oledfont.h:
 
 /Users/iotsuyuan/esp/esp-idf/components/hal/include/hal_i2c.h:
 
@@ -256,5 +256,5 @@ oled.o: /Users/iotsuyuan/esp/esp-idf/components/oled/./oled.c \
 
 /Users/iotsuyuan/esp/esp-idf/components/freertos/include/freertos/ringbuf.h:
 
-/Users/iotsuyuan/esp/esp-idf/components/oled/include/oled.h:
-/Users/iotsuyuan/esp/esp-idf/components/oled/./oled.c:
+/Users/iotsuyuan/esp/esp32/blink/main/oled/include/oled.h:
+/Users/iotsuyuan/esp/esp32/blink/main/oled/./oled.c:

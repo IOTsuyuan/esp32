@@ -31,7 +31,9 @@
         "limits": "c",
         "tuple": "c",
         "type_traits": "c",
-        "utility": "c"
+        "utility": "c",
+        "socket.h": "c",
+        "sockets.h": "c"
     },
     "C_Cpp.intelliSenseEngineFallback": "Enabled",
 }

@@ -12,6 +12,13 @@
 #include "nvs_flash.h"
 #include "esp_system.h"
 #include "esp_log.h"
+#include "lwip/socket.h"
+
+struct sockaddr_in serverAddress;
+serverAddress.sin_family = AF_INET;
+serverAddress.sin_addr.s_addr = htonl(INADDR_ANY);
+serverAddress.sin_port = htons(portNumber);
+bind(sock, (struct sockaddr *)&serverAddress, sizeof(serverAddress));
 
 static const char *BMP180_I2C_LOG_TAG = "BMP180 I2C Read";
 static const char *DHT11_LOG_TAG = "DHT11 Read";
