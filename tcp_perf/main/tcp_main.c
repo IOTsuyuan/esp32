@@ -10,6 +10,8 @@
 #include "driver/gpio.h"
 #include "lwip/netdb.h"
 #include "lwip/sockets.h"
+#include "mdns.h"
+#include "apps/sntp/sntp.h"
 
 #define ESP_INTR_FLAG_DEFAULT 0
 
@@ -194,9 +196,11 @@ void wifi_setup() {
 }
 
 
+
 // Main application
 void app_main()
 {
+	
 	printf("Application started\n\n");
 	
 	nvs_flash_init();

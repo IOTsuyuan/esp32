@@ -38,7 +38,8 @@
                 "/Users/iotsuyuan/esp/esp32/blink/library/oled/include",
                 "/System/Library/Frameworks/OpenCL.framework/Versions/A/lib/clang/2.0/include",
                 "/Users/iotsuyuan/esp/esp32-snippets/c-utils",
-                "/Users/iotsuyuan/esp/esp-idf/components/driver/include/driver/"
+                "/Users/iotsuyuan/esp/esp-idf/components/driver/include/driver/",
+                "/Users/iotsuyuan/esp/esp-idf/components/mdns/include"
             ],
             "defines": [
                 "_DEBUG"

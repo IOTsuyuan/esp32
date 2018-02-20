@@ -124,7 +124,9 @@ tcp_main.o: /Users/iotsuyuan/esp/esp32/tcp_perf/main/./tcp_main.c \
  /Users/iotsuyuan/esp/esp-idf/components/lwip/include/lwip/lwip/netdb.h \
  /Users/iotsuyuan/esp/esp-idf/components/lwip/include/lwip/lwip/inet.h \
  /Users/iotsuyuan/esp/esp-idf/components/lwip/include/lwip/lwip/sockets.h \
- /Users/iotsuyuan/esp/esp-idf/components/lwip/include/lwip/lwip/err.h
+ /Users/iotsuyuan/esp/esp-idf/components/lwip/include/lwip/lwip/err.h \
+ /Users/iotsuyuan/esp/esp-idf/components/mdns/include/mdns.h \
+ /Users/iotsuyuan/esp/esp-idf/components/esp32/include/esp_event.h
 
 /Users/iotsuyuan/esp/esp-idf/components/newlib/include/stdio.h:
 
@@ -377,4 +379,8 @@ tcp_main.o: /Users/iotsuyuan/esp/esp32/tcp_perf/main/./tcp_main.c \
 /Users/iotsuyuan/esp/esp-idf/components/lwip/include/lwip/lwip/sockets.h:
 
 /Users/iotsuyuan/esp/esp-idf/components/lwip/include/lwip/lwip/err.h:
+
+/Users/iotsuyuan/esp/esp-idf/components/mdns/include/mdns.h:
+
+/Users/iotsuyuan/esp/esp-idf/components/esp32/include/esp_event.h:
 /Users/iotsuyuan/esp/esp32/tcp_perf/main/./tcp_main.c:
